@@ -1,7 +1,12 @@
 import React from 'react';
+import homeImage from '../assets/landingpage.png';
 
 function Home() {
-  return <h2>Home Page</h2>;
+  return (
+    <div className="home">
+      <img src={homeImage} alt="Home" className="full-screen-image" />
+    </div>
+  );
 }
 
 export default Home;
