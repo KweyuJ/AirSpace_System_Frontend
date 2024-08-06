@@ -1,4 +1,5 @@
 import React from 'react';
+import './About.css'
 
 import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaTwitter, FaInstagram, FaLinkedin } from 'react-icons/fa';
 
@@ -121,10 +122,6 @@ const AboutUs = () => {
             <FaLinkedin />
           </a>
         </div>
-      </div>
-      <div className="cta-section">
-        <h2>Join Us on Our Journey</h2>
-        <button className="cta-button">Contact Us</button>
       </div>
     </div>
   );
