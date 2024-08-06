@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaPlane, FaHotel, FaPhone, FaSignInAlt, FaUserPlus, FaInfoCircle } from 'react-icons/fa';
 import Home from './components/Home';
 import Flights from './components/Flights';
@@ -12,6 +12,18 @@ import logo from './assets/logo.png';
 import './index.css';
 
 function App() {
+  const navigate = useNavigate();
+
+  function handleSignOut() {
+    console.log('Signing out...');
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('name');
+    localStorage.removeItem('email');
+    localStorage.removeItem('role');
+    console.log('Redirecting to home page...');
+    navigate('/');
+  }
+
   return (
     <div>
       <nav>
@@ -38,6 +50,9 @@ function App() {
           <li>
             <Link to="/signup"><FaUserPlus /> Sign up</Link>
           </li>
+          <li>
+            <a href="#sign-out" onClick={handleSignOut}><FaSignInAlt /> Sign out</a>
+          </li>
         </ul>
       </nav>
       <main>
@@ -49,7 +64,6 @@ function App() {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
-          <Route path='/aboutus' element={<SignUp />} />
         </Routes>
       </main>
     </div>

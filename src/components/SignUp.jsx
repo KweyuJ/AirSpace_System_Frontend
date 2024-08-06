@@ -9,6 +9,7 @@ import {
   Box,
   InputAdornment,
   Snackbar,
+  MenuItem,
 } from "@mui/material";
 import {
   ArrowBack as ArrowBackIcon,
@@ -52,6 +53,7 @@ const SignUp = () => {
     repeatPassword: "",
     showPassword: false,
     showRepeatPassword: false,
+    role: "", // Add role field
   });
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
@@ -63,6 +65,7 @@ const SignUp = () => {
     phone_number: false,
     password: false,
     repeatPassword: false,
+    role: false, // Add role field
   });
 
   const handleInputChange = (e) => {
@@ -83,6 +86,7 @@ const SignUp = () => {
     if (!formData.password) newErrors.password = true;
     if (formData.password !== formData.repeatPassword)
       newErrors.repeatPassword = true;
+    if (!formData.role) newErrors.role = true; // Add role validation
 
     setFormErrors(newErrors);
 
@@ -96,6 +100,7 @@ const SignUp = () => {
       email: formData.email,
       phone_number: formData.phone_number,
       password: formData.password,
+      role: formData.role, // Include role in the payload
     });
 
     try {
@@ -142,13 +147,29 @@ const SignUp = () => {
   };
 
   return (
-    <Grid container justifyContent="center" alignItems="center" style={styles.container}>
+    <Grid
+      container
+      justifyContent="center"
+      alignItems="center"
+      style={styles.container}
+    >
       <Grid item xs={12} sm={6}>
-        <img src={signupImage} alt="Auth" style={styles.signUpImage} /> {/* Updated image */}
+        <img src={signupImage} alt="Auth" style={styles.signUpImage} />{" "}
+        {/* Updated image */}
       </Grid>
-      <Grid item xs={12} sm={6} container justifyContent="center" alignItems="center">
+      <Grid
+        item
+        xs={12}
+        sm={6}
+        container
+        justifyContent="center"
+        alignItems="center"
+      >
         <Box sx={styles.formContainer}>
-          <IconButton onClick={() => setShowSignInForm(!showSignInForm)} style={styles.backButton}>
+          <IconButton
+            onClick={() => setShowSignInForm(!showSignInForm)}
+            style={styles.backButton}
+          >
             <ArrowBackIcon />
           </IconButton>
           <Typography variant="h5">Sign Up</Typography>
@@ -206,8 +227,25 @@ const SignUp = () => {
               value={formData.phone_number}
               onChange={handleInputChange}
               error={formErrors.phone_number}
-              helperText={formErrors.phone_number ? "Phone number is required" : ""}
+              helperText={
+                formErrors.phone_number ? "Phone number is required" : ""
+              }
             />
+            <TextField
+              label="Role"
+              variant="outlined"
+              fullWidth
+              margin="normal"
+              name="role"
+              value={formData.role}
+              onChange={handleInputChange}
+              error={formErrors.role}
+              helperText={formErrors.role ? "Role is required" : ""}
+              select
+            >
+              <MenuItem value="admin">Admin</MenuItem>
+              <MenuItem value="traveler">Traveler</MenuItem>
+            </TextField>
             <TextField
               label="Password"
               type={formData.showPassword ? "text" : "password"}
@@ -223,7 +261,11 @@ const SignUp = () => {
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton onClick={togglePasswordVisibility}>
-                      {formData.showPassword ? <VisibilityOff /> : <Visibility />}
+                      {formData.showPassword ? (
+                        <VisibilityOff />
+                      ) : (
+                        <Visibility />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 ),
@@ -239,36 +281,50 @@ const SignUp = () => {
               value={formData.repeatPassword}
               onChange={handleInputChange}
               error={formErrors.repeatPassword}
-              helperText={formErrors.repeatPassword ? "Passwords do not match" : ""}
+              helperText={
+                formErrors.repeatPassword ? "Passwords do not match" : ""
+              }
               InputProps={{
                 endAdornment: (
                   <InputAdornment position="end">
                     <IconButton onClick={toggleRepeatPasswordVisibility}>
-                      {formData.showRepeatPassword ? <VisibilityOff /> : <Visibility />}
+                      {formData.showRepeatPassword ? (
+                        <VisibilityOff />
+                      ) : (
+                        <Visibility />
+                      )}
                     </IconButton>
                   </InputAdornment>
                 ),
               }}
             />
-            <Button type="submit" variant="contained" color="error" fullWidth style={{ marginTop: "1rem" }}>
-              Sign Up
-            </Button>
+            <Box textAlign="center">
+              <Button
+                type="submit"
+                variant="contained"
+                color="error"
+                fullWidth
+                style={{ marginTop: "1rem" }}
+              >
+                Sign Up
+              </Button>
+            </Box>
           </form>
-          <Snackbar
-            open={!!successMessage || !!errorMessage}
-            autoHideDuration={6000}
-            onClose={handleSnackbarClose}
-            message={successMessage || errorMessage}
-            anchorOrigin={{ vertical: "top", horizontal: "center" }}
-            ContentProps={{
-              style: {
-                backgroundColor: successMessage ? "#4CAF50" : "#D32F2F", // Green for success, Red for error
-                color: "white",
-              },
-            }}
-          />
         </Box>
       </Grid>
+      <Snackbar
+        open={!!successMessage || !!errorMessage}
+        autoHideDuration={6000}
+        onClose={handleSnackbarClose}
+        message={successMessage || errorMessage}
+        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+        ContentProps={{
+          style: {
+            backgroundColor: successMessage ? "#4CAF50" : "#D32F2F", // Green for success, Red for error
+            color: "white",
+          },
+        }}
+      />
     </Grid>
   );
 };
