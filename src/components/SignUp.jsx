@@ -155,7 +155,6 @@ const SignUp = () => {
     >
       <Grid item xs={12} sm={6}>
         <img src={signupImage} alt="Auth" style={styles.signUpImage} />{" "}
-      
       </Grid>
       <Grid
         item
@@ -302,9 +301,12 @@ const SignUp = () => {
               <Button
                 type="submit"
                 variant="contained"
-                color="error"
                 fullWidth
-                style={{ marginTop: "1rem" }}
+                style={{
+                  marginTop: "1rem",
+                  backgroundColor: "d32f2f",
+                  color: "white",
+                }}
               >
                 Sign Up
               </Button>
