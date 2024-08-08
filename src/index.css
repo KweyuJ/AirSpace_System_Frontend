@@ -1,46 +1,49 @@
+/* index.css */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
 
-nav {
-  background-color: #d32f2f;
-  width: 119px;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
+/* New Navbar styling */
+.navbar {
+  background-color: #d32f2f; /* Red color */
+  padding: 10px 20px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding-top: 20px;
+  justify-content: space-between;
 }
 
-nav ul {
+.navbar img.logo {
+  height: 40px;
+}
+
+.navbar ul {
   list-style-type: none;
+  margin: 0;
   padding: 0;
-  width: 100%;
-}
-
-nav ul li {
-  width: 100%;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-nav ul li a {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  padding: 15px;
+}
+
+.navbar ul li {
+  margin: 0 15px;
+}
+
+.navbar ul li a {
   color: white;
   text-decoration: none;
-  width: 100%;
-  font-size: 18px;
+  display: flex;
+  align-items: center;
+  font-size: 16px;
 }
 
-nav ul li a:hover {
-  background-color: #b71c1c;
+.navbar ul li a:hover {
+  color: #ffcdd2; /* Light red for hover effect */
+}
+
+.navbar ul li a svg {
+  margin-right: 8px;
+  font-size: 24px;
 }
 
 main {
@@ -52,18 +55,6 @@ main {
   width: 50px;
   margin-bottom: 20px;
 }
-
-nav ul li a svg {
-  margin-bottom: 5px;
-  font-size: 44px; 
-}
-
-nav ul li a span {
-  display: block;
-  text-align: left;
-  width: 100%;
-}
-
 
 .home {
   display: flex;
@@ -227,3 +218,83 @@ h2 {
   margin-bottom: 15px;
 }
 
+
+/* booking flights css */
+.booking-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.booking-form-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.booking-form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.trip-type {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.trip-type label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.trip-type input {
+  margin-right: 8px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  width: 48%;
+  margin-bottom: 20px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.form-group input[type="text"]::placeholder,
+.form-group input[type="date"]::placeholder,
+.form-group input[type="number"]::placeholder {
+  color: #999;
+}
+
+button[type="submit"] {
+  padding: 12px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: background-color 0.3s ease;
+}
+
+button[type="submit"]:hover {
+  background-color: #0056b3;
+}

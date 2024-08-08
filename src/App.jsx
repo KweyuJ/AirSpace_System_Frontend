@@ -26,7 +26,7 @@ function App() {
 
   return (
     <div>
-      <nav>
+      <nav className="navbar">
         <img src={logo} alt="Logo" className="logo" />
         <ul>
           <li>

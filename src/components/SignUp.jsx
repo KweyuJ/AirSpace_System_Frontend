@@ -16,7 +16,7 @@ import {
   Visibility,
   VisibilityOff,
 } from "@mui/icons-material";
-import signupImage from "../assets/signup.jpeg"; // Import the signup image
+import signupImage from "../assets/signup.png"; // Import the signup image
 
 const styles = {
   signUpOption: {
@@ -155,7 +155,7 @@ const SignUp = () => {
     >
       <Grid item xs={12} sm={6}>
         <img src={signupImage} alt="Auth" style={styles.signUpImage} />{" "}
-        {/* Updated image */}
+      
       </Grid>
       <Grid
         item
