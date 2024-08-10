@@ -10,6 +10,10 @@ import SignUp from './components/SignUp';
 import AboutUs from './components/About';
 import logo from './assets/logo.png';
 import './index.css';
+import { FlightProvider } from './context/FlightContext';
+import SearchResults from './components/SearchResults';
+import PassengerDetails from './components/PassengerDetails';
+import Confirmation from './components/Confirmation';  // Import the Confirmation component
 
 function App() {
   const navigate = useNavigate();
@@ -25,48 +29,53 @@ function App() {
   }
 
   return (
-    <div>
-      <nav className="navbar">
-        <img src={logo} alt="Logo" className="logo" />
-        <ul>
-          <li>
-            <Link to="/"><FaHome /> Home</Link>
-          </li>
-          <li>
-            <Link to="/aboutus"><FaInfoCircle /> AboutUs</Link> 
-          </li>
-          <li>
-            <Link to="/flights"><FaPlane /> Flights</Link>
-          </li>
-          <li>
-            <Link to="/hotels"><FaHotel /> Hotels</Link>
-          </li>
-          <li className="contactUs">
-            <Link to="/contactus"><FaPhone /> Contact us</Link>
-          </li>
-          <li>
-            <Link to="/login"><FaSignInAlt /> Log in</Link>
-          </li>
-          <li>
-            <Link to="/signup"><FaUserPlus /> Sign up</Link>
-          </li>
-          <li>
-            <a href="#sign-out" onClick={handleSignOut}><FaSignInAlt /> Sign out</a>
-          </li>
-        </ul>
-      </nav>
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/aboutus" element={<AboutUs />} />
-          <Route path="/flights" element={<Flights />} />
-          <Route path="/hotels" element={<Hotels />} />
-          <Route path="/contactus" element={<ContactUs />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-        </Routes>
-      </main>
-    </div>
+    <FlightProvider>
+      <div>
+        <nav className="navbar">
+          <img src={logo} alt="Logo" className="logo" />
+          <ul>
+            <li>
+              <Link to="/"><FaHome /> Home</Link>
+            </li>
+            <li>
+              <Link to="/aboutus"><FaInfoCircle /> AboutUs</Link> 
+            </li>
+            <li>
+              <Link to="/flights"><FaPlane /> Flights</Link>
+            </li>
+            <li>
+              <Link to="/hotels"><FaHotel /> Hotels</Link>
+            </li>
+            <li className="contactUs">
+              <Link to="/contactus"><FaPhone /> Contact us</Link>
+            </li>
+            <li>
+              <Link to="/login"><FaSignInAlt /> Log in</Link>
+            </li>
+            <li>
+              <Link to="/signup"><FaUserPlus /> Sign up</Link>
+            </li>
+            <li>
+              <a href="#sign-out" onClick={handleSignOut}><FaSignInAlt /> Sign out</a>
+            </li>
+          </ul>
+        </nav>
+        <main>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/aboutus" element={<AboutUs />} />
+            <Route path="/flights" element={<Flights />} />
+            <Route path="/hotels" element={<Hotels />} />
+            <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/search-results" element={<SearchResults />} />
+            <Route path="/passenger-details" element={<PassengerDetails />} />
+            <Route path="/confirmation" element={<Confirmation />} />  {/* Add this line */}
+          </Routes>
+        </main>
+      </div>
+    </FlightProvider>
   );
 }
 

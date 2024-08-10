@@ -221,7 +221,7 @@ h2 {
 
 
 /* booking flights css */
-.flights-page {
+/* .flights-page {
   position: relative;
   width: auto;
   height: 100vh;
@@ -230,12 +230,12 @@ h2 {
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* Position form towards the top */
-  padding-top: 60px; /* Adjust this value to control how far down the form appears */
+  align-items: flex-start; 
+  padding-top: 60px; 
 }
 
 .booking-container {
-  background-color: #d32f2f; /* Semi-transparent background for readability */
+  background-color: #d32f2f; 
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -297,5 +297,186 @@ h2 {
 
 .find-flights-button:hover {
   background-color: #024996; 
+} */
+
+/* Flights Form Styling */
+/* .flights-page {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background-color: #f5f5f5;
+  padding: 60px 20px;
+  min-height: 100vh;
 }
 
+.booking-container {
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  width: 100%;
+}
+
+.booking-form-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-form label {
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.booking-form input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 15px;
+} */
+
+.find-flights-button {
+  background-color: #e63946;
+  color: #fff;
+  border: none;
+  padding: 10px 15px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.find-flights-button:hover {
+  background-color: #d32f2f;
+}
+
+.search-results {
+  margin-top: 20px;
+}
+
+.search-results h3 {
+  color: #e63946;
+}
+
+.search-results ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.search-results li {
+  background-color: #f9f9f9;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-results li:hover {
+  background-color: #f1f1f1;
+}
+
+/* passenger details */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 50px;
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-image: url('../../Images/stock-photo-sky 1.jpg');
+  padding: 20px 0;
+}
+
+
+
+
+.route-info {
+  margin-left: auto;
+  margin-right: 20px;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  margin: 20px 0;
+}
+
+.steps span {
+  padding: 10px;
+  border-bottom: 2px solid transparent;
+}
+
+.steps .current-step {
+  border-bottom: 2px solid red;
+}
+
+main h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+main p {
+  margin-bottom: 20px;
+}
+
+form {
+  background-color: #f9f9f9;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f1c1c1;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.phone-input {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.phone-input img {
+  height: 20px;
+}
+
+form button {
+  padding: 10px 20px;
+  background-color: black;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+}
