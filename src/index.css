@@ -1,12 +1,15 @@
-/* index.css */
 body {
   margin: 0;
   font-family: Arial, sans-serif;
 }
 
-.navbar {
-  background-color: #d32f2f; /* Red color */
-  padding: 10px 20px;
+nav {
+  background-color: #d32f2f;
+  width: 119px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -31,6 +34,37 @@ body {
 .navbar ul li a {
   color: white;
   text-decoration: none;
+  width: 100%;
+  font-size: 18px;
+}
+
+nav ul li a:hover {
+  background-color: #b71c1c;
+}
+
+main {
+  margin-left: 200px;
+  padding: 20px;
+}
+
+.logo {
+  width: 50px;
+  margin-bottom: 20px;
+}
+
+nav ul li a svg {
+  margin-bottom: 5px;
+  font-size: 44px; 
+}
+
+nav ul li a span {
+  display: block;
+  text-align: left;
+  width: 100%;
+}
+
+
+.home {
   display: flex;
   align-items: center;
   font-size: 16px;
@@ -44,3 +78,4 @@ body {
   margin-right: 8px;
   font-size: 24px;
 }
+
