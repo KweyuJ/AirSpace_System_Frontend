@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
-import FlightContext from '../context/FlightContext';
+import { FlightContext } from '../context/FlightContext';
 
 const PassengerDetails = () => {
   const { selectedFlight, setPassengerDetails } = useContext(FlightContext);

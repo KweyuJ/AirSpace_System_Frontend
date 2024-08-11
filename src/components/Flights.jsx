@@ -1,78 +1,92 @@
-// src/components/Flights.jsx
 import React, { useState, useContext } from 'react';
+import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import FlightContext from '../context/FlightContext';
+import { FlightContext } from '../context/FlightContext';
+import bookingImage from '../assets/booking.png'; // Import the image
 
-function Flights() {
-  const [departureCity, setDepartureCity] = useState('');
-  const [arrivalCity, setArrivalCity] = useState('');
-  const [departDate, setDepartDate] = useState('');
-  const [returnDate, setReturnDate] = useState('');
-  const { setSearchResults } = useContext(FlightContext);
-  const navigate = useNavigate();
+const Flights = () => {
+    const [fromCity, setFromCity] = useState('');
+    const [toCity, setToCity] = useState('');
+    const [outboundDate, setOutboundDate] = useState('');
+    const [returnDate, setReturnDate] = useState('');
+    const [tripType, setTripType] = useState('oneway');
+    const [passengers, setPassengers] = useState(1);
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
+    const { setFlights, setSearchParams } = useContext(FlightContext);
+    const navigate = useNavigate();
 
-    const url = `http://127.0.0.1:5000/flights?from=${departureCity}&to=${arrivalCity}&depart_date=${departDate}&return_date=${returnDate}`;
+    const handleSearch = async (e) => {
+        e.preventDefault();
 
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        throw new Error('Failed to fetch flights');
-      }
-      const data = await response.json();
-      setSearchResults(data);
-      navigate('/search-results');
-    } catch (error) {
-      console.error('Error:', error);
-    }
-  };
+        try {
+            const response = await axios.get('http://127.0.0.1:5000/flights', {
+                params: {
+                    from: fromCity,
+                    to: toCity,
+                    outboundDate,
+                    returnDate: tripType === 'roundtrip' ? returnDate : '',
+                    tripType,
+                    passengers
+                }
+            });
 
-  return (
-    <div className="flights-page">
-      <div className="booking-container">
-        <h2>Search Flights</h2>
-        <form className="booking-form-container" onSubmit={handleSearch}>
-          <label>
-            Departure City:
-            <input
-              type="text"
-              value={departureCity}
-              onChange={(e) => setDepartureCity(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            Arrival City:
-            <input
-              type="text"
-              value={arrivalCity}
-              onChange={(e) => setArrivalCity(e.target.value)}
-              required
-            />
-          </label>
-          <label>
-            Departure Date:
-            <input
-              type="date"
-              value={departDate}
-              onChange={(e) => setDepartDate(e.target.value)}
-            />
-          </label>
-          <label>
-            Return Date:
-            <input
-              type="date"
-              value={returnDate}
-              onChange={(e) => setReturnDate(e.target.value)}
-            />
-          </label>
-          <button className="find-flights-button" type="submit">Search Flights</button>
-        </form>
-      </div>
-    </div>
-  );
-}
+            setFlights(response.data);
+            setSearchParams({ fromCity, toCity, outboundDate, returnDate, tripType, passengers });
+            navigate('/results');
+        } catch (error) {
+            console.error('Error fetching flights:', error);
+        }
+    };
+
+    // Inline style for the full-page background image
+    const containerStyle = {
+        backgroundImage: `url(${bookingImage})`,
+        backgroundSize: 'cover', // Ensure the image covers the entire container
+        backgroundPosition: 'center', // Center the background image
+        backgroundRepeat: 'no-repeat', // Prevent repeating the image
+        minHeight: '100vh', // Ensure container covers at least full viewport height
+        display: 'flex', // Flexbox container
+        flexDirection: 'column', // Align items in a column
+        padding: '20px', // Add padding around the container
+    };
+
+    return (
+        <div style={containerStyle}>
+            <h2>Search Flights</h2>
+            <form onSubmit={handleSearch} className="flight-form">
+                <div className="form-group">
+                    <label>Departure City:</label>
+                    <input type="text" value={fromCity} onChange={(e) => setFromCity(e.target.value)} required />
+                </div>
+                <div className="form-group">
+                    <label>Arrival City:</label>
+                    <input type="text" value={toCity} onChange={(e) => setToCity(e.target.value)} required />
+                </div>
+                <div className="form-group">
+                    <label>Departure Date:</label>
+                    <input type="date" value={outboundDate} onChange={(e) => setOutboundDate(e.target.value)} required />
+                </div>
+                {tripType === 'roundtrip' && (
+                    <div className="form-group">
+                        <label>Return Date:</label>
+                        <input type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} required />
+                    </div>
+                )}
+                <div className="form-group">
+                    <label>Trip Type:</label>
+                    <select value={tripType} onChange={(e) => setTripType(e.target.value)}>
+                        <option value="oneway">One Way</option>
+                        <option value="roundtrip">Round Trip</option>
+                    </select>
+                </div>
+                <div className="form-group">
+                    <label>Passengers:</label>
+                    <input type="number" value={passengers} onChange={(e) => setPassengers(e.target.value)} min="1" required />
+                </div>
+                <button type="submit" className="search-button">Find flights</button>
+            </form>
+        </div>
+    );
+};
 
 export default Flights;

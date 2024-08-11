@@ -8,12 +8,12 @@ import ContactUs from './components/ContactUs';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AboutUs from './components/About';
+import PassengerDetails from './components/PassengerDetails'; // Import the component
+import Confirmation from './components/Confirmation'; // Import the component
 import logo from './assets/logo.png';
 import './index.css';
 import { FlightProvider } from './context/FlightContext';
-import SearchResults from './components/SearchResults';
-import PassengerDetails from './components/PassengerDetails';
-import Confirmation from './components/Confirmation';  // Import the Confirmation component
+import FlightResults from './components/FlightResults';
 
 function App() {
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ function App() {
               <Link to="/"><FaHome /> Home</Link>
             </li>
             <li>
-              <Link to="/aboutus"><FaInfoCircle /> AboutUs</Link> 
+              <Link to="/aboutus"><FaInfoCircle /> About Us</Link>
             </li>
             <li>
               <Link to="/flights"><FaPlane /> Flights</Link>
@@ -47,16 +47,16 @@ function App() {
               <Link to="/hotels"><FaHotel /> Hotels</Link>
             </li>
             <li className="contactUs">
-              <Link to="/contactus"><FaPhone /> Contact us</Link>
+              <Link to="/contactus"><FaPhone /> Contact Us</Link>
             </li>
             <li>
-              <Link to="/login"><FaSignInAlt /> Log in</Link>
+              <Link to="/login"><FaSignInAlt /> Log In</Link>
             </li>
             <li>
-              <Link to="/signup"><FaUserPlus /> Sign up</Link>
+              <Link to="/signup"><FaUserPlus /> Sign Up</Link>
             </li>
             <li>
-              <a href="#sign-out" onClick={handleSignOut}><FaSignInAlt /> Sign out</a>
+              <a href="#sign-out" onClick={handleSignOut}><FaSignInAlt /> Sign Out</a>
             </li>
           </ul>
         </nav>
@@ -69,9 +69,9 @@ function App() {
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/search-results" element={<SearchResults />} />
+            <Route path="/results" element={<FlightResults />} />
             <Route path="/passenger-details" element={<PassengerDetails />} />
-            <Route path="/confirmation" element={<Confirmation />} />  {/* Add this line */}
+            <Route path="/confirmation" element={<Confirmation />} />
           </Routes>
         </main>
       </div>
