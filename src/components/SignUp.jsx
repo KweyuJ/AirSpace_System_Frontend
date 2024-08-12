@@ -304,7 +304,7 @@ const SignUp = () => {
                 fullWidth
                 style={{
                   marginTop: "1rem",
-                  backgroundColor: "d32f2f",
+                  backgroundColor: "#d32f2f",
                   color: "white",
                 }}
               >

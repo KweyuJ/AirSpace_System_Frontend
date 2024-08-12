@@ -1,26 +1,32 @@
-import React, { useState } from 'react'
-// import './ContactUs.css'
+import React from 'react';
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import "./Aboutus.css";
 
 const ContactUs = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      message: '',
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .max(50, 'Name must be 50 characters or less')
+        .required('Required'),
+      email: Yup.string()
+        .email('Invalid email address')
+        .required('Required'),
+      message: Yup.string()
+        .max(500, 'Message must be 500 characters or less')
+        .required('Required'),
+    }),
+    onSubmit: (values, { resetForm }) => {
+      console.log('Form submitted:', values);
+      alert('Thank you for contacting us! We will get back to you shortly.');
+      resetForm(); // Clear the form after submission
+    },
   });
-
-  const [formSubmitted, setFormSubmitted] = useState(false);
-
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Here, you can add logic to handle form submission, such as sending an email or saving data
-    console.log('Form submitted:', formData);
-    setFormSubmitted(true);
-    setFormData({ name: '', email: '', message: '' }); // Clear form after submission
-  };
 
   return (
     <div className="contact-container">
@@ -33,19 +39,18 @@ const ContactUs = () => {
         <p><strong>Email:</strong> info@AirEscape.com</p>
       </div>
 
-      {formSubmitted && <p className="success-message">Thank you for contacting us! We'll get back to you shortly.</p>}
-
-      <form className="contact-form" onSubmit={handleSubmit}>
+      <form className="contact-form" onSubmit={formik.handleSubmit}>
         <div className="form-group">
           <label htmlFor="name">Name:</label>
           <input
             type="text"
             id="name"
             name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
+            {...formik.getFieldProps('name')}
           />
+          {formik.touched.name && formik.errors.name ? (
+            <div className="error">{formik.errors.name}</div>
+          ) : null}
         </div>
 
         <div className="form-group">
@@ -54,10 +59,11 @@ const ContactUs = () => {
             type="email"
             id="email"
             name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
+            {...formik.getFieldProps('email')}
           />
+          {formik.touched.email && formik.errors.email ? (
+            <div className="error">{formik.errors.email}</div>
+          ) : null}
         </div>
 
         <div className="form-group">
@@ -65,10 +71,11 @@ const ContactUs = () => {
           <textarea
             id="message"
             name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
+            {...formik.getFieldProps('message')}
           />
+          {formik.touched.message && formik.errors.message ? (
+            <div className="error">{formik.errors.message}</div>
+          ) : null}
         </div>
 
         <button type="submit" className="submit-button">Send Message</button>
