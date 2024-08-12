@@ -41,49 +41,49 @@ const Flights = () => {
     // Inline style for the full-page background image
     const containerStyle = {
         backgroundImage: `url(${bookingImage})`,
-        backgroundSize: 'cover', // Ensure the image covers the entire container
-        backgroundPosition: 'center', // Center the background image
-        backgroundRepeat: 'no-repeat', // Prevent repeating the image
-        minHeight: '100vh', // Ensure container covers at least full viewport height
-        display: 'flex', // Flexbox container
-        flexDirection: 'column', // Align items in a column
-        padding: '20px', // Add padding around the container
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        padding: '20px',
     };
 
     return (
         <div style={containerStyle}>
-            <h2>Search Flights</h2>
-            <form onSubmit={handleSearch} className="flight-form">
-                <div className="form-group">
-                    <label>Departure City:</label>
-                    <input type="text" value={fromCity} onChange={(e) => setFromCity(e.target.value)} required />
+            <h2 className="flights-title">Search Flights</h2>
+            <form onSubmit={handleSearch} className="flights-form">
+                <div className="flights-form-group">
+                    <label className="flights-label">Departure City:</label>
+                    <input type="text" value={fromCity} onChange={(e) => setFromCity(e.target.value)} required className="flights-input" />
                 </div>
-                <div className="form-group">
-                    <label>Arrival City:</label>
-                    <input type="text" value={toCity} onChange={(e) => setToCity(e.target.value)} required />
+                <div className="flights-form-group">
+                    <label className="flights-label">Arrival City:</label>
+                    <input type="text" value={toCity} onChange={(e) => setToCity(e.target.value)} required className="flights-input" />
                 </div>
-                <div className="form-group">
-                    <label>Departure Date:</label>
-                    <input type="date" value={outboundDate} onChange={(e) => setOutboundDate(e.target.value)} required />
+                <div className="flights-form-group">
+                    <label className="flights-label">Departure Date:</label>
+                    <input type="date" value={outboundDate} onChange={(e) => setOutboundDate(e.target.value)} required className="flights-input" />
                 </div>
                 {tripType === 'roundtrip' && (
-                    <div className="form-group">
-                        <label>Return Date:</label>
-                        <input type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} required />
+                    <div className="flights-form-group">
+                        <label className="flights-label">Return Date:</label>
+                        <input type="date" value={returnDate} onChange={(e) => setReturnDate(e.target.value)} required className="flights-input" />
                     </div>
                 )}
-                <div className="form-group">
-                    <label>Trip Type:</label>
-                    <select value={tripType} onChange={(e) => setTripType(e.target.value)}>
+                <div className="flights-form-group">
+                    <label className="flights-label">Trip Type:</label>
+                    <select value={tripType} onChange={(e) => setTripType(e.target.value)} className="flights-select">
                         <option value="oneway">One Way</option>
                         <option value="roundtrip">Round Trip</option>
                     </select>
                 </div>
-                <div className="form-group">
-                    <label>Passengers:</label>
-                    <input type="number" value={passengers} onChange={(e) => setPassengers(e.target.value)} min="1" required />
+                <div className="flights-form-group">
+                    <label className="flights-label">Passengers:</label>
+                    <input type="number" value={passengers} onChange={(e) => setPassengers(e.target.value)} min="1" required className="flights-input" />
                 </div>
-                <button type="submit" className="search-button">Find flights</button>
+                <button type="submit" className="flights-button">Find flights</button>
             </form>
         </div>
     );

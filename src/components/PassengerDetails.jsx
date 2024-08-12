@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React,{ useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useNavigate } from 'react-router-dom';
@@ -35,12 +35,12 @@ const PassengerDetails = () => {
     <div className="container">
       <header>
         {selectedFlight && (
-          <div className="route-info">
+        <div className="route-info">
             <p>
               {selectedFlight.departure_city} → {selectedFlight.arrival_city}
               &nbsp;&nbsp; {selectedFlight.departure_date} - {selectedFlight.return_date}
             </p>
-          </div>
+        </div>
         )}
       </header>
       <main>
@@ -119,7 +119,7 @@ const PassengerDetails = () => {
           <div className="form-group">
             <label htmlFor="phoneNumber">Phone Number</label>
             <div className="phone-input">
-              <img src="./Images/KenyanFlag.jpg" alt="Kenya Flag" />
+              <img src="./src/assets/KenyanFlag.jpeg" alt="Kenya Flag" />
               <input
                 type="text"
                 id="phoneNumber"
