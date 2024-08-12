@@ -164,7 +164,7 @@ textarea {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
-  background-color: #fff;
+  background-color: #b94242;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   font-family: Arial, sans-serif;
@@ -222,6 +222,13 @@ h2 {
 
 
 /* passenger details */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; 
+}
+
 .container {
   width: 100%;
   max-width: 1200px;
@@ -229,22 +236,41 @@ h2 {
   padding: 50px;
 }
 
-/* header {
+/* Header */
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: url('../../Images/stock-photo-sky 1.jpg');
+  background-image: url('../src/assets/stock-photo-sky 1.jpg');
   padding: 20px 0;
-} */
-
-
-
-
-.route-info {
-  margin-left: auto;
-  margin-right: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
+.top-nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 50px;
+  padding-left: 20px; /* Add padding to move the words to the right */
+}
+
+.centered {
+  text-align: center;
+}
+
+.top-nav ul li a {
+  text-decoration: none;
+  color: #333;
+  justify-content: space-between;
+}
+
+.route-info {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Steps */
 .steps {
   display: flex;
   justify-content: space-around;
@@ -254,33 +280,48 @@ h2 {
 .steps span {
   padding: 10px;
   border-bottom: 2px solid transparent;
+  font-weight: bold;
 }
 
 .steps .current-step {
   border-bottom: 2px solid red;
+  color: red; /* Red color for current step */
+}
+
+/* Main Content */
+main {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 main h1 {
   font-size: 24px;
   margin-bottom: 10px;
+  color: #333;
 }
 
 main p {
   margin-bottom: 20px;
+  color: #555;
 }
 
+/* Form */
 form {
-  background-color: #f9f9f9;
+  /*background-color: #f9f9f9; */ /* Removed background color for a cleaner look */
   padding: 20px;
   border: 1px solid #ddd;
+  border-radius: 8px;
 }
 
 .section-header {
   display: flex;
   justify-content: space-between;
-  background-color: #f1c1c1;
+  background-color: #f1c1c1; /* Light red background */
   padding: 10px;
   margin-bottom: 20px;
+  border-radius: 8px 8px 0 0; /* Rounded top corners */
 }
 
 .form-group {
@@ -290,14 +331,18 @@ form {
 .form-group label {
   display: block;
   margin-bottom: 5px;
+  font-weight: bold;
+  color: #333;
 }
 
-.form-group input,
-.form-group select {
+.Passenger-Details.form-group input,
+.Passenger-Details.form-group select {
   width: 100%;
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 4px;
+  font-size: 16px;
+  color: #333;
 }
 
 .phone-input {
@@ -310,18 +355,39 @@ form {
   height: 20px;
 }
 
+/* Buttons */
 form button {
   padding: 10px 20px;
-  background-color: black;
+  background-color: #eb0b0b; /* Blue button */
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+form button:hover {
+  background-color: #ca2929; /* Darker blue on hover */
+}
+
+/* Error Message */
 .error {
   color: red;
   font-size: 12px;
+  margin-bottom: 10px;
+}
+
+/* Responsive Styling (For smaller screens) */
+@media (max-width: 768px) {
+  .steps {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
 }
 
 
@@ -334,10 +400,10 @@ form button {
   flex-wrap: wrap;
   gap: 20px;
   align-items: center;
-  background-color: #d32f2f; /* Slightly transparent background */
+  background-color: #d32f2f; 
   padding: 20px;
   border-radius: 8px;
-  color: white; /* Make form text white */
+  color: white; 
 }
 
 .form-group {
@@ -346,23 +412,23 @@ form button {
   margin-right: 15px;
 }
 
-.form-group label {
+/* .form-group label {
   margin-bottom: 5px;
   font-weight: bold;
-  color: white; /* Make label text white */
+  color: white; 
 }
 
-.form-group input,
+/* .form-group input,
 .form-group select {
   padding: 8px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
   width: 200px;
-  color: #333; /* Make input text dark for contrast */
+  color: #219c27; 
 }
 
-.search-button {
+/* .search-button {
   padding: 10px 20px;
   font-size: 16px;
   background-color: #0056b3; 
@@ -374,5 +440,5 @@ form button {
 
 .search-button:hover {
   background-color: #0251a7; 
-}
+} */  
 

@@ -1,13 +1,9 @@
-import React, { useContext } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from 'react-router-dom';
-import { FlightContext } from '../context/FlightContext';
+import "../index.css";
 
 const PassengerDetails = () => {
-  const { selectedFlight, setPassengerDetails } = useContext(FlightContext);
-  const navigate = useNavigate();
-
   const formik = useFormik({
     initialValues: {
       title: "",
@@ -26,22 +22,16 @@ const PassengerDetails = () => {
       email: Yup.string().email("Invalid email address").required("Required"),
     }),
     onSubmit: (values) => {
-      setPassengerDetails(values);  // Save form data in context
-      navigate('/confirmation');  // Navigate to confirmation page
+      alert(JSON.stringify(values, null, 2));
     },
   });
 
   return (
     <div className="container">
       <header>
-        {selectedFlight && (
-          <div className="route-info">
-            <p>
-              {selectedFlight.departure_city} → {selectedFlight.arrival_city}
-              &nbsp;&nbsp; {selectedFlight.departure_date} - {selectedFlight.return_date}
-            </p>
-          </div>
-        )}
+        <div className="route-info">
+          <p>NAIROBI-WILSON → MOMBASA &nbsp;&nbsp; 06/08/2024 - 29/08/2024</p>
+        </div>
       </header>
       <main>
         <div className="steps">
@@ -51,18 +41,9 @@ const PassengerDetails = () => {
           <span className="step">Payment</span>
         </div>
         <h1>Passenger details</h1>
-        {selectedFlight && (
-          <div className="flight-details">
-            <h3>Selected Flight</h3>
-            <p>
-              Flight {selectedFlight.flight_number}: {selectedFlight.departure_city} to {selectedFlight.arrival_city} on {selectedFlight.departure_date} - ${selectedFlight.price}
-            </p>
-          </div>
-        )}
-        <p>
+        <p class="centered">
           Please enter names as they appear on passport or travel documentation.
         </p>
-       
         <form onSubmit={formik.handleSubmit}>
           <div className="section-header">
             <span className="icon">&#128100;</span>
@@ -119,12 +100,12 @@ const PassengerDetails = () => {
           <div className="form-group">
             <label htmlFor="phoneNumber">Phone Number</label>
             <div className="phone-input">
-              <img src="./Images/KenyanFlag.jpg" alt="Kenya Flag" />
+              <img src="./src/assets/KenyanFlag.jpg" alt="Kenya Flag" />
               <input
                 type="text"
                 id="phoneNumber"
                 name="phoneNumber"
-                placeholder=""
+                placeholder="+254"
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={formik.values.phoneNumber}
