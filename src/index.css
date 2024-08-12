@@ -398,6 +398,9 @@ form button:hover {
   padding: 20px;
   border-radius: 8px;
   color: white;
+  max-width: fit-content;
+  margin-left: 300px;
+  height: 100px;
 }
 
 .flights-form-group {
@@ -418,7 +421,7 @@ form button:hover {
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 200px;
+  width: 150px;
   color: #333;
 }
 
@@ -458,102 +461,124 @@ form button:hover {
 }
 
 /* Flight results */
+/* Flight results container */
 .flight-results {
   width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
-  padding: 20px;
+  height: 100vh; /* Full viewport height */
+  padding: 0px;
   background-color: #fff;
+  border-radius: 0; /* Removed border-radius */
+  border: none; /* Removed border */
+  box-shadow: none; /* Removed box-shadow */
+  overflow-y: auto; /* Allow scrolling if content overflows */
 }
 
-.flight-summary h3 {
-  margin: 5px 0;
+/* Flight summary headers */
+.flight-summary {
+  padding: 50px; /* Added padding for better spacing */
+  background-color: #fbe9e7; /* Light pink background */
+  margin-left: 65px;
+  margin-right: 70px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+/* Add hover effect to flight-summary */
+.flight-summary:hover {
+  transform: translateY(-5px); /* Lift on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
 }
 
 /* Flight List */
 .flight-list {
   list-style-type: none;
-  padding: 0;
+  width: 95%;
 }
 
+/* Flight card */
 .flight-card {
   background-color: #fbe9e7; /* Light pink background */
   padding: 20px;
+  padding-top: 40px;
   border-radius: 8px;
   margin-bottom: 20px;
+  width: 95%;
+  
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth hover effect */
+}
+
+.flight-card:hover {
+  transform: translateY(-5px); /* Lift on hover */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow */
 }
 
 /* Flight Information */
 .flight-info {
-  background-color: #616161; /* Gray background */
-  padding: 20px 55px; /* Increase padding for larger box */
-  border-radius: 8px;
+  background-color: #7d7d7a; /* Gray background */
+  padding: 20px 30px; /* Balanced padding */
+  border-radius: 10px;
+  width: 90%;
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: white;
-  font-size: 28px; /* Increase font size */
 }
 
-.departure-time, .arrival-time, .flight-number, .outbound-flight {
-  font-size: 20px; /* Increase font size for specific elements */
-  font-weight: bold; /* Optional: makes the text bold */
-}
-
-
-.flight-info p {
+.outbound-flight {
+  font-size: 22px;
+  font-weight: bold;
   margin: 0;
-  font-size: 12px;
-  color: rgb(236, 232, 232);
-  margin-bottom: 5px;
+  padding-left: 100px;
+  color: whitesmoke;
 }
 
+/* Flight Timing and Details */
 .flight-timing {
   display: flex;
   align-items: center;
+  font-size: 18px; /* Standardized font size for timing and number */
 }
 
 .departure-time, .arrival-time {
-  font-size: 28px;
+  font-size: 30px; /* Ensure same font size */
   font-weight: bold;
+  margin: 0 15px; /* Spacing around times */
+  color: #fff; /* Ensure text color is consistent */
 }
 
 .arrow {
-  font-size: 20px;
-  color: white;
-  margin: 10 10px;
-  font-size: 78px;
-  vertical-align: -10px;
-  position: relative;
-  top: -20px;
+  font-size: 40px; /* Adjusted for better visual balance */
+  margin: 0 15px;
+  color: whitesmoke; /* Ensure color contrasts with the background */
 }
 
 .flight-number {
-  font-size: 20px;
-  color: white;
-  font-weight: bold;
-  margin-left: 15px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff; /* Ensure readability on the dark background */
+  margin-left: 20px;
 }
 
-/* Price and Continue Button */
-.price-and-continue {
-  display: flex;
-  align-items: center;
-  margin-left: auto;
-}
 
+/* Price Button */
 .price-button {
   background-color: #d32f2f; /* Red background */
   color: white;
-  font-size: 20px;
-  padding: 15px 25px;
+  font-size: 18px;
+  padding: 15px 30px;
   border-radius: 8px;
   font-weight: bold;
+  margin-top: 5px;
   border: none;
   cursor: pointer;
-  margin-left: 590px
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+.price-button:hover {
+  background-color: #b71c1c; /* Darker red on hover */
+}
+
+/* Continue Button */
 .continue-button {
   background-color: #707879;
   color: white;
@@ -561,28 +586,26 @@ form button:hover {
   padding: 15px 35px;
   border-radius: 5px;
   cursor: pointer;
-  margin-left: 590px;
-  font-size: larger;
- 
-}
-.flight-results {
-  padding: 20px;
-  border: 2px solid #707879;
-  border-radius: 10px;
-  background-color: #fbe9e7;
-  max-width: 800px;
-  margin: 20px auto;
+  font-size: 18px;
+  display: block;
+  width: fit-content;
+  margin: 20px auto; /* Center the button horizontally */
+  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
 }
 
+.continue-button:hover {
+  background-color: #4a5152; /* Darker gray on hover */
+}
+
+/* Results Heading */
 .results {
   text-align: center;
-  color: #0c0c0c;
+  color: #333;
+  font-size: 24px; /* Increased font size */
+  font-weight: bold;
+  margin-bottom: 20px;
 }
 
-.flight-summary h3 {
-  margin: 10px 0;
-  color: #0e0d0d;
-}
 /* Confirmation.css */
 .confirmation-container {
   font-family: Arial, sans-serif;
@@ -690,7 +713,7 @@ form button:hover {
 }
 
 .departure-time, .arrival-time, .flight-number, .outbound-flight {
-  font-size: 20px; /* Increase font size for specific elements */
+  font-size: 30px; /* Increase font size for specific elements */
   font-weight: bold; /* Optional: makes the text bold */
 }
 
@@ -708,7 +731,7 @@ form button:hover {
 }
 
 .departure_time, .arrival-time {
-  font-size: 28px;
+  font-size: 30px;
   font-weight: bold;
 }
 

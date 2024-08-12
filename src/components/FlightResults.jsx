@@ -15,8 +15,7 @@ const FlightResults = () => {
         <div className="flight-results">
             <h2 className='results'>Flight Results</h2>
             <div className="flight-summary">
-                <h3>From: {searchParams.fromCity}</h3>
-                <h3>To: {searchParams.toCity}</h3>
+                
                 <h3>Outbound Date: {searchParams.outboundDate}</h3>
                 {searchParams.tripType === 'roundtrip' && (
                     <h3>Return Date: {searchParams.returnDate}</h3>
@@ -25,15 +24,15 @@ const FlightResults = () => {
             </div>
 
             <div className="flight-results-box">
-    <h4>Outbound Flights</h4>
+    <h4>Outbound Flights:</h4>
     {flights.outbound_flights.length > 0 ? (
         <ul className="flight-list">
             {flights.outbound_flights.map(flight => (
                 <><li key={flight.flight_id} className="flight-card">
                     <div className="flight-info">
                         <p className="outbound-flight">
-                            Outbound Flight: {flight.departure_city} - {flight.arrival_city}
-                            &nbsp;|&nbsp; {flight.departure_time}
+                             {flight.departure_city} - {flight.arrival_city}
+                        
                         </p>
                         <div className="flight-timing">
                             <span className="departure-time">{flight.departure_time}</span>
@@ -62,15 +61,15 @@ const FlightResults = () => {
 
             {searchParams.tripType === 'roundtrip' && (
                 <div>
-                    <h4>Return Flights</h4>
+                    <h4>Return Flights:</h4>
                     {flights.return_flights.length > 0 ? (
                         <ul className="flight-list">
                             {flights.return_flights.map(flight => (
                                 <li key={flight.flight_id} className="flight-card">
                                     <div className="flight-info">
                                         <p className="outbound-flight">
-                                            Return Flight: {flight.departure_city} - {flight.arrival_city}
-                                            &nbsp;|&nbsp; {flight.departure_time}
+                                             {flight.departure_city} - {flight.arrival_city}
+                                            
                                         </p>
                                         <div className="flight-timing">
                                             <span className="departure-time">{flight.departure_time}</span>
@@ -79,13 +78,11 @@ const FlightResults = () => {
                                             <span className="flight-number">{flight.flight_number}</span>
                                         </div>
                                     </div>
-                                    <div className="price-and-continue">
+                                    <div >
                                         <button className="price-button">
                                             KES {flight.price}
                                         </button>
-                                        <button onClick={handleContinue} className="continue-button">
-                                            Continue
-                                        </button>
+                                        
                                     </div>
                                 </li>
                             ))}
