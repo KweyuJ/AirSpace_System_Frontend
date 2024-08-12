@@ -23,7 +23,7 @@ const ContactUs = () => {
     onSubmit: (values, { resetForm }) => {
       console.log('Form submitted:', values);
       alert('Thank you for contacting us! We will get back to you shortly.');
-      resetForm(); // Clear the form after submission
+      resetForm(); 
     },
   });
 
