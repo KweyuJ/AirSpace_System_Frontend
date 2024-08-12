@@ -4,10 +4,12 @@ import { FaHome, FaPlane, FaHotel, FaPhone, FaSignInAlt, FaUserPlus, FaInfoCircl
 import Home from './components/Home';
 import Flights from './components/Flights';
 import Hotels from './components/Hotels';
+import SingleHotelPage from "./components/SingleHotel"
 import ContactUs from './components/ContactUs';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AboutUs from './components/About';
+import HotelReservationForm from './components/Hotelreservationform'; 
 import logo from './assets/logo.png';
 import './index.css';
 
@@ -33,7 +35,7 @@ function App() {
             <Link to="/"><FaHome /> Home</Link>
           </li>
           <li>
-            <Link to="/aboutus"><FaInfoCircle /> AboutUs</Link> 
+            <Link to="/aboutus"><FaInfoCircle /> About Us</Link> 
           </li>
           <li>
             <Link to="/flights"><FaPlane /> Flights</Link>
@@ -42,16 +44,16 @@ function App() {
             <Link to="/hotels"><FaHotel /> Hotels</Link>
           </li>
           <li className="contactUs">
-            <Link to="/contactus"><FaPhone /> Contact us</Link>
+            <Link to="/contactus"><FaPhone /> Contact Us</Link>
           </li>
           <li>
-            <Link to="/login"><FaSignInAlt /> Log in</Link>
+            <Link to="/login"><FaSignInAlt /> Log In</Link>
           </li>
           <li>
-            <Link to="/signup"><FaUserPlus /> Sign up</Link>
+            <Link to="/signup"><FaUserPlus /> Sign Up</Link>
           </li>
           <li>
-            <a href="#sign-out" onClick={handleSignOut}><FaSignInAlt /> Sign out</a>
+            <a href="#sign-out" onClick={handleSignOut}><FaSignInAlt /> Sign Out</a>
           </li>
         </ul>
       </nav>
@@ -61,6 +63,8 @@ function App() {
           <Route path="/aboutus" element={<AboutUs />} />
           <Route path="/flights" element={<Flights />} />
           <Route path="/hotels" element={<Hotels />} />
+          <Route path="/hotels/:id" element={<SingleHotelPage />} />
+          <Route path="/hotels/:id/book" element={<HotelReservationForm />} />
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
