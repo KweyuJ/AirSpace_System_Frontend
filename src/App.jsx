@@ -1,3 +1,4 @@
+// App.jsx
 import React from 'react';
 import { Routes, Route, Link, useNavigate } from 'react-router-dom';
 import { FaHome, FaPlane, FaHotel, FaPhone, FaSignInAlt, FaUserPlus, FaInfoCircle } from 'react-icons/fa';
@@ -9,13 +10,16 @@ import ContactUs from './components/ContactUs';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AboutUs from './components/About';
-import PassengerDetails from './components/PassengerDetails'; // Import the component
-import Confirmation from './components/Confirmation'; // Import the component
+import PassengerDetails from './components/PassengerDetails'; 
+import Confirmation from './components/Confirmation'; 
 import HotelReservationForm from './components/Hotelreservationform';
 import logo from './assets/logo.png';
 import './index.css';
 import { FlightProvider } from './context/FlightContext';
 import FlightResults from './components/FlightResults';
+import Dashboard from './components/Dashboard';
+import HotelsSection from './components/HotelsSection';
+import FlightSection from './components/FlightSection'; // Import the new component
 
 function App() {
   const navigate = useNavigate();
@@ -42,12 +46,6 @@ function App() {
             <li>
               <Link to="/aboutus"><FaInfoCircle /> About Us</Link>
             </li>
-            {/* <li>
-              <Link to="/flights"><FaPlane /> Flights</Link>
-            </li>
-            <li>
-              <Link to="/hotels"><FaHotel /> Hotels</Link>
-            </li> */}
             <li className="contactUs">
               <Link to="/contactus"><FaPhone /> Contact Us</Link>
             </li>
@@ -59,6 +57,9 @@ function App() {
             </li>
             <li>
               <a href="#sign-out" onClick={handleSignOut}><FaSignInAlt /> Sign Out</a>
+            </li>
+            <li>
+              <Link to="/dashboard"><FaUserPlus /> Admin Dashboard</Link>
             </li>
           </ul>
         </nav>
@@ -76,6 +77,9 @@ function App() {
             <Route path="/results" element={<FlightResults />} />
             <Route path="/passenger-details" element={<PassengerDetails />} />
             <Route path="/confirmation" element={<Confirmation />} />
+            <Route path="/dashboard" element={<Dashboard />} /> 
+            <Route path="/hotels-section" element={<HotelsSection />} /> 
+            <Route path="/admin/flights" element={<FlightSection />} /> {/* Add this route */}
           </Routes>
         </main>
       </div>

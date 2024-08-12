@@ -1,0 +1,114 @@
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .sidebar {
+    width: 250px;
+    background-color: #b71c1c; /* Adjusted to a darker red */
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .sidebar h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+  }
+  
+  .sidebar nav ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar nav ul li {
+    margin: 15px 0;
+  }
+  
+  .sidebar nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.2rem;
+    display: block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .sidebar nav ul li a:hover {
+    background-color: #3b92e4; /* Slightly lighter red for hover */
+    transform: scale(1.05);
+  }
+  
+  .dashboard-main {
+    flex-grow: 1;
+    padding: 40px;
+    text-align: center;
+  }
+  
+  .dashboard-main h1 {
+    font-size: 2.5rem;
+    color: #3b92e4;
+    margin-bottom: 30px;
+  }
+  
+  .dashboard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .dashboard-graphs {
+    width: 100%;
+    max-width: 1200px; /* Added max-width for larger screens */
+    margin-top: 20px;
+  }
+  
+  .graph-placeholder {
+    background-color: #e0e0e0;
+    height: 300px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .dashboard-wrapper {
+      flex-direction: column;
+    }
+  
+    .sidebar {
+      width: 100%;
+      text-align: center;
+      box-shadow: none;
+    }
+  
+    .dashboard-main {
+      padding: 20px;
+    }
+  
+    .dashboard-graphs {
+      width: 100%;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .sidebar nav ul li a {
+      font-size: 1rem;
+    }
+  
+    .dashboard-main h1 {
+      font-size: 2rem;
+    }
+  
+    .graph-placeholder {
+      height: 200px; /* Adjust height for smaller screens */
+      font-size: 1rem; /* Adjust font size for smaller screens */
+    }
+  }
+  
