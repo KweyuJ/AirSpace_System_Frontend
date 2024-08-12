@@ -4,12 +4,14 @@ import { FaHome, FaPlane, FaHotel, FaPhone, FaSignInAlt, FaUserPlus, FaInfoCircl
 import Home from './components/Home';
 import Flights from './components/Flights';
 import Hotels from './components/Hotels';
+import SingleHotelPage from "./components/SingleHotel"
 import ContactUs from './components/ContactUs';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AboutUs from './components/About';
 import PassengerDetails from './components/PassengerDetails'; // Import the component
 import Confirmation from './components/Confirmation'; // Import the component
+import HotelReservationForm from './components/Hotelreservationform';
 import logo from './assets/logo.png';
 import './index.css';
 import { FlightProvider } from './context/FlightContext';
@@ -66,6 +68,8 @@ function App() {
             <Route path="/aboutus" element={<AboutUs />} />
             <Route path="/flights" element={<Flights />} />
             <Route path="/hotels" element={<Hotels />} />
+            <Route path="/hotels/:id" element={<SingleHotelPage />} />
+            <Route path="/hotels/:id/book" element={<HotelReservationForm />} />
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
