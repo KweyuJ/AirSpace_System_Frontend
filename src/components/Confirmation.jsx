@@ -1,65 +1,56 @@
 import React, { useContext } from 'react';
 import { FlightContext } from '../context/FlightContext';
+import "../index.css";
 
 const Confirmation = () => {
     const { flights, searchParams, passengerDetails } = useContext(FlightContext);
 
     return (
-        <div>
+        <div className="confirmation-container">
             <h2>Confirmation</h2>
-            <div>
-                <h3>Flight Details</h3>
-                <h4>From: {searchParams.fromCity}</h4>
-                <h4>To: {searchParams.toCity}</h4>
-                <h4>Outbound Date: {searchParams.outboundDate}</h4>
-                {searchParams.tripType === 'roundtrip' && (
-                    <h4>Return Date: {searchParams.returnDate}</h4>
-                )}
-                <h4>Passengers: {searchParams.passengers}</h4>
 
-                <h4>Outbound Flights</h4>
-                {flights.outbound_flights.length > 0 ? (
-                    <ul>
-                        {flights.outbound_flights.map(flight => (
-                            <li key={flight.flight_id}>
-                                Flight Number: {flight.flight_number} - Departure Time: {flight.departure_time} - Arrival Time: {flight.arrival_time} - Price: {flight.price} KSH
-                            </li>
-                        ))}
-                    </ul>
-                ) : (
-                    <p>No outbound flights found.</p>
-                )}
-
-                {searchParams.tripType === 'roundtrip' && (
-                    <div>
-                        <h4>Return Flights</h4>
-                        {flights.return_flights.length > 0 ? (
-                            <ul>
-                                {flights.return_flights.map(flight => (
-                                    <li key={flight.flight_id}>
-                                        Flight Number: {flight.flight_number} - Departure Time: {flight.departure_time} - Arrival Time: {flight.arrival_time} - Price: {flight.price} KSH
-                                    </li>
-                                ))}
-                            </ul>
-                        ) : (
-                            <p>No return flights found.</p>
-                        )}
+            <div className="flight-details-2">
+                <h3>Flights:</h3>
+                {flights.outbound_flights.map((flight, index) => (
+                    <div key={index} className="flight-box">
+                        <div className="flight-info-2">
+                            <div>
+                                <h4>{flight.departure_time}</h4>
+                                <p>{searchParams.fromCity} | {searchParams.outboundDate}</p>
+                            </div>
+                            <div>
+                                <h4>{flight.arrival_time}</h4>
+                                <p>non-stop</p>
+                            </div>
+                            <div>
+                                <h4>{flight.flight_number}</h4>
+                            </div>
+                            <div className="price-tag">
+                                <h4>KES {flight.price}</h4>
+                            </div>
+                        </div>
                     </div>
-                )}
+                ))}
             </div>
 
-            <div>
-                <h3>Passenger Details</h3>
-                <p>Title: {passengerDetails.title}</p>
-                <p>First Name: {passengerDetails.firstName}</p>
-                <p>Last Name: {passengerDetails.lastName}</p>
-                <p>Phone Number: {passengerDetails.phoneNumber}</p>
-                <p>Email: {passengerDetails.email}</p>
-                <p>More Details: {passengerDetails.moreDetails ? 'Yes' : 'No'}</p>
-                <p>Subscribe: {passengerDetails.subscribe ? 'Yes' : 'No'}</p>
+            <div className="traveler-details">
+                <h3>Traveler details:</h3>
+                <div className="traveler-box">
+                    <div className="traveler-info">
+                        <p>Name: {passengerDetails.title} {passengerDetails.firstName} {passengerDetails.lastName}</p>
+                        <p>Phone: {passengerDetails.phoneNumber}</p>
+                        <p>Email: {passengerDetails.email}</p>
+                        <p className="total">TOTAL: 22,340</p>
+                    </div>
+                </div>
+            </div>
+
+            <div className="payment-option">
+                <button className="mpesa-button">Pay with MPESA</button>
             </div>
         </div>
     );
 };
 
 export default Confirmation;
+
