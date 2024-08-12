@@ -42,12 +42,12 @@ function App() {
             <li>
               <Link to="/aboutus"><FaInfoCircle /> About Us</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/flights"><FaPlane /> Flights</Link>
             </li>
             <li>
               <Link to="/hotels"><FaHotel /> Hotels</Link>
-            </li>
+            </li> */}
             <li className="contactUs">
               <Link to="/contactus"><FaPhone /> Contact Us</Link>
             </li>
