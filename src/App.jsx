@@ -29,6 +29,7 @@ import HotelsSection from "./components/HotelsSection";
 import FlightSection from "./components/FlightSection";
 import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";  // Import the new AdminRoute component
+import Generateformpdf from './components/Generateformpdf'; 
 
 function App() {
   const navigate = useNavigate();
@@ -112,6 +113,7 @@ function App() {
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/hotels/:id" element={<SingleHotelPage />} />
             <Route path="/hotels/:id/book" element={<HotelReservationForm />} />
+            <Route path="/pdf-view" element={<Generateformpdf />} /> 
           </Routes>
         </main>
       </div>
