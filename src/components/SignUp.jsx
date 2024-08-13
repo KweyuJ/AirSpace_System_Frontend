@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Grid,
@@ -68,21 +68,8 @@ const SignUp = () => {
     role: false, // Add role field
   });
 
-  // Auto-populate feature: Load form data from localStorage on component mount
-  useEffect(() => {
-    const savedFormData = localStorage.getItem("signUpFormData");
-    if (savedFormData) {
-      setFormData(JSON.parse(savedFormData));
-    }
-  }, []);
-
   const handleInputChange = (e) => {
-    const newFormData = { ...formData, [e.target.name]: e.target.value };
-    setFormData(newFormData);
-    
-    // Auto-populate feature: Save form data to localStorage on each change
-    localStorage.setItem("signUpFormData", JSON.stringify(newFormData));
-
+    setFormData({ ...formData, [e.target.name]: e.target.value });
     if (formErrors[e.target.name]) {
       setFormErrors({ ...formErrors, [e.target.name]: false });
     }
@@ -128,7 +115,6 @@ const SignUp = () => {
       if (response.ok) {
         const result = await response.json();
         setSuccessMessage("User signed up successfully!");
-        localStorage.removeItem("signUpFormData"); // Clear saved data on successful signup
         setTimeout(() => {
           navigate("/", { replace: true });
         }, 3000);
@@ -346,4 +332,3 @@ const SignUp = () => {
 };
 
 export default SignUp;
-
