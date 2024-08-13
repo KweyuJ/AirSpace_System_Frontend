@@ -83,7 +83,7 @@ FlightSection.css
   .flight-card-action-button {
     margin-top: 10px;
     padding: 8px 15px;
-    background-color: #b71c1c;
+    background-color: #dc3535;
     color: white;
     border: none;
     border-radius: 4px;
@@ -94,4 +94,5 @@ FlightSection.css
   .flight-card-action-button:hover {
     background-color: darkred;
   }
+  
   
