@@ -1,4 +1,3 @@
-// App.jsx
 import React from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import {
@@ -29,6 +28,7 @@ import Dashboard from "./components/Dashboard";
 import HotelsSection from "./components/HotelsSection";
 import FlightSection from "./components/FlightSection";
 import ProtectedRoute from "./components/ProtectedRoute";
+import AdminRoute from "./components/AdminRoute";  // Import the new AdminRoute component
 
 function App() {
   const navigate = useNavigate();
@@ -95,11 +95,13 @@ function App() {
             <Route path="/results" element={<FlightResults />} />
             <Route path="/passenger-details" element={<PassengerDetails />} />
             <Route path="/confirmation" element={<Confirmation />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/hotels-section" element={<HotelsSection />} />
-            <Route path="/hotels/:id" element={<SingleHotelPage />} />
-            <Route path="/hotels/:id/book" element={<HotelReservationForm />} />
-            <Route path="/admin/flights" element={<FlightSection />} />
+
+            {/* Admin Routes */}
+            <Route element={<AdminRoute />}>
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/hotels-section" element={<HotelsSection />} />
+              <Route path="/admin/flights" element={<FlightSection />} />
+            </Route>
 
             {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
@@ -108,6 +110,8 @@ function App() {
             </Route>
 
             <Route path="/contactus" element={<ContactUs />} />
+            <Route path="/hotels/:id" element={<SingleHotelPage />} />
+            <Route path="/hotels/:id/book" element={<HotelReservationForm />} />
           </Routes>
         </main>
       </div>
