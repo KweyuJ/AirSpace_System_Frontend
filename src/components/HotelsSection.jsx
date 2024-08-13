@@ -49,16 +49,22 @@ const HotelsSection = () => {
   const handleDeleteHotel = async (id) => {
     try {
       await axios.delete(`http://127.0.0.1:5000/hotels/${id}`);
-      setHotels(hotels.filter(hotel => hotel.id !== id));
+      setHotels(hotels.filter(hotel => hotel.hotel_id !== id));
     } catch (error) {
       console.error('Error deleting hotel:', error);
     }
   };
 
   const handleUpdateHotel = async () => {
+    if (!editingHotel || !(editingHotel.id || editingHotel.hotel_id)) {
+      console.error('No hotel selected for editing or invalid hotel ID.');
+      return;
+    }
+
     try {
-      const response = await axios.put(`http://127.0.0.1:5000/hotels/${editingHotel.id}`, editingHotel);
-      setHotels(hotels.map(hotel => hotel.id === editingHotel.id ? response.data : hotel));
+      const hotelId = editingHotel.id || editingHotel.hotel_id;
+      const response = await axios.put(`http://127.0.0.1:5000/hotels/${hotelId}`, editingHotel);
+      setHotels(hotels.map(hotel => (hotel.hotel_id === hotelId ? response.data : hotel)));
       setEditingHotel(null);
     } catch (error) {
       console.error('Error updating hotel:', error);
@@ -66,7 +72,11 @@ const HotelsSection = () => {
   };
 
   const startEditing = (hotel) => {
-    setEditingHotel(hotel);
+    if (hotel && (hotel.id || hotel.hotel_id)) {
+      setEditingHotel({ ...hotel }); // Ensure the entire hotel object is passed and copied
+    } else {
+      console.error('Invalid hotel object for editing:', hotel);
+    }
   };
 
   const cancelEditing = () => {
@@ -112,8 +122,8 @@ const HotelsSection = () => {
       </div>
       <div className="hotels-list">
         {Array.isArray(hotels) && hotels.map(hotel => (
-          <div className="hotel-card" key={hotel.id}>
-            {editingHotel && editingHotel.id === hotel.id ? (
+          <div className="hotel-card" key={hotel.hotel_id}>
+            {editingHotel && (editingHotel.id || editingHotel.hotel_id) === hotel.hotel_id ? (
               <>
                 <input
                   type="text"
@@ -154,7 +164,7 @@ const HotelsSection = () => {
                 </div>
                 <div className="hotel-actions">
                   <button onClick={() => startEditing(hotel)}>Edit</button>
-                  <button onClick={() => handleDeleteHotel(hotel.id)}>Delete</button>
+                  <button onClick={() => handleDeleteHotel(hotel.hotel_id)}>Delete</button>
                 </div>
               </>
             )}
