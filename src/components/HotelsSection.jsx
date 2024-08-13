@@ -48,23 +48,39 @@ const HotelsSection = () => {
 
   const handleDeleteHotel = async (id) => {
     try {
-      await axios.delete(`http://127.0.0.1:5000/hotels/${id}`);
-      setHotels(hotels.filter(hotel => hotel.hotel_id !== id));
+        const token = localStorage.getItem('token');
+        const response = await axios.delete(`http://127.0.0.1:5000/hotels/${id}`, {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        });
+        if (response.status === 200) {
+            setHotels(hotels.filter(hotel => hotel.hotel_id !== id));
+        } else {
+            console.error('Failed to delete hotel:', response.data);
+        }
     } catch (error) {
-      console.error('Error deleting hotel:', error);
+        console.error('Error deleting hotel:', error);
     }
-  };
+};
+
 
   const handleUpdateHotel = async () => {
-    if (!editingHotel || !(editingHotel.id || editingHotel.hotel_id)) {
+    if (!editingHotel || !editingHotel.hotel_id) {
       console.error('No hotel selected for editing or invalid hotel ID.');
       return;
     }
-
+  
     try {
-      const hotelId = editingHotel.id || editingHotel.hotel_id;
-      const response = await axios.put(`http://127.0.0.1:5000/hotels/${hotelId}`, editingHotel);
-      setHotels(hotels.map(hotel => (hotel.hotel_id === hotelId ? response.data : hotel)));
+      // Ensure editingHotel has the correct structure
+      const response = await axios.patch(`http://127.0.0.1:5000/hotels/${editingHotel.hotel_id}`, {
+        name: editingHotel.name,
+        location: editingHotel.location,
+        price_per_night: parseFloat(editingHotel.price_per_night),
+        image_url: editingHotel.image_url,
+        amenities: editingHotel.amenities
+      });
+      setHotels(hotels.map(hotel => (hotel.hotel_id === editingHotel.hotel_id ? response.data : hotel)));
       setEditingHotel(null);
     } catch (error) {
       console.error('Error updating hotel:', error);
@@ -72,7 +88,7 @@ const HotelsSection = () => {
   };
 
   const startEditing = (hotel) => {
-    if (hotel && (hotel.id || hotel.hotel_id)) {
+    if (hotel && hotel.hotel_id) {
       setEditingHotel({ ...hotel }); // Ensure the entire hotel object is passed and copied
     } else {
       console.error('Invalid hotel object for editing:', hotel);
@@ -123,7 +139,7 @@ const HotelsSection = () => {
       <div className="hotels-list">
         {Array.isArray(hotels) && hotels.map(hotel => (
           <div className="hotel-card" key={hotel.hotel_id}>
-            {editingHotel && (editingHotel.id || editingHotel.hotel_id) === hotel.hotel_id ? (
+            {editingHotel && editingHotel.hotel_id === hotel.hotel_id ? (
               <>
                 <input
                   type="text"
