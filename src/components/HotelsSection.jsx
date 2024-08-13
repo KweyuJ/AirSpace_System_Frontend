@@ -12,6 +12,7 @@ const HotelsSection = () => {
     amenities: ''
   });
   const [editingHotel, setEditingHotel] = useState(null);
+  const [alert, setAlert] = useState(null); // State for alert messages
 
   useEffect(() => {
     fetchHotels();
@@ -32,7 +33,13 @@ const HotelsSection = () => {
 
   const handleAddHotel = async () => {
     try {
-      const response = await axios.post('http://127.0.0.1:5000/hotels', newHotel);
+      const response = await axios.post('http://127.0.0.1:5000/hotels', {
+        name: newHotel.name,
+        location: newHotel.location,
+        price_per_night: parseFloat(newHotel.price_per_night),
+        image_url: newHotel.image_url,
+        amenities: newHotel.amenities
+      });
       setHotels([...hotels, response.data]);
       setNewHotel({
         name: '',
@@ -41,38 +48,46 @@ const HotelsSection = () => {
         image_url: '',
         amenities: ''
       });
+      setAlert({ type: 'success', message: 'Hotel added successfully!' });
+      setTimeout(() => setAlert(null), 3000); // Hide alert after 3 seconds
     } catch (error) {
       console.error('Error adding hotel:', error);
+      setAlert({ type: 'error', message: 'Error adding hotel.' });
+      setTimeout(() => setAlert(null), 3000);
     }
   };
 
   const handleDeleteHotel = async (id) => {
     try {
-        const token = localStorage.getItem('token');
-        const response = await axios.delete(`http://127.0.0.1:5000/hotels/${id}`, {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        });
-        if (response.status === 200) {
-            setHotels(hotels.filter(hotel => hotel.hotel_id !== id));
-        } else {
-            console.error('Failed to delete hotel:', response.data);
+      const token = localStorage.getItem('token');
+      const response = await axios.delete(`http://127.0.0.1:5000/hotels/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
         }
+      });
+      if (response.status === 200) {
+        setHotels(hotels.filter(hotel => hotel.hotel_id !== id));
+        setAlert({ type: 'success', message: 'Hotel deleted successfully!' });
+        setTimeout(() => setAlert(null), 3000);
+      } else {
+        console.error('Failed to delete hotel:', response.data);
+        setAlert({ type: 'error', message: 'Failed to delete hotel.' });
+        setTimeout(() => setAlert(null), 3000);
+      }
     } catch (error) {
-        console.error('Error deleting hotel:', error);
+      console.error('Error deleting hotel:', error);
+      setAlert({ type: 'error', message: 'Error deleting hotel.' });
+      setTimeout(() => setAlert(null), 3000);
     }
-};
-
+  };
 
   const handleUpdateHotel = async () => {
     if (!editingHotel || !editingHotel.hotel_id) {
       console.error('No hotel selected for editing or invalid hotel ID.');
       return;
     }
-  
+
     try {
-      // Ensure editingHotel has the correct structure
       const response = await axios.patch(`http://127.0.0.1:5000/hotels/${editingHotel.hotel_id}`, {
         name: editingHotel.name,
         location: editingHotel.location,
@@ -82,14 +97,18 @@ const HotelsSection = () => {
       });
       setHotels(hotels.map(hotel => (hotel.hotel_id === editingHotel.hotel_id ? response.data : hotel)));
       setEditingHotel(null);
+      setAlert({ type: 'success', message: 'Hotel updated successfully!' });
+      setTimeout(() => setAlert(null), 3000);
     } catch (error) {
       console.error('Error updating hotel:', error);
+      setAlert({ type: 'error', message: 'Error updating hotel.' });
+      setTimeout(() => setAlert(null), 3000);
     }
   };
 
   const startEditing = (hotel) => {
     if (hotel && hotel.hotel_id) {
-      setEditingHotel({ ...hotel }); // Ensure the entire hotel object is passed and copied
+      setEditingHotel({ ...hotel });
     } else {
       console.error('Invalid hotel object for editing:', hotel);
     }
@@ -102,6 +121,11 @@ const HotelsSection = () => {
   return (
     <div className="hotels-container">
       <h2>Manage Hotels</h2>
+      {alert && (
+        <div className={`alert ${alert.type}`}>
+          {alert.message}
+        </div>
+      )}
       <div className="form-container">
         <h3>Add a New Hotel</h3>
         <input
@@ -140,7 +164,7 @@ const HotelsSection = () => {
         {Array.isArray(hotels) && hotels.map(hotel => (
           <div className="hotel-card" key={hotel.hotel_id}>
             {editingHotel && editingHotel.hotel_id === hotel.hotel_id ? (
-              <>
+              <div className="edit-form-container">
                 <input
                   type="text"
                   value={editingHotel.name}
@@ -167,8 +191,8 @@ const HotelsSection = () => {
                   onChange={(e) => setEditingHotel({ ...editingHotel, amenities: e.target.value })}
                 />
                 <button onClick={handleUpdateHotel}>Save</button>
-                <button onClick={cancelEditing}>Cancel</button>
-              </>
+                <button className="cancel-button" onClick={cancelEditing}>Cancel</button>
+              </div>
             ) : (
               <>
                 <img src={hotel.image_url} alt={hotel.name} className="hotel-image" />
@@ -179,8 +203,8 @@ const HotelsSection = () => {
                   <p><strong>Amenities:</strong> {hotel.amenities}</p>
                 </div>
                 <div className="hotel-actions">
-                  <button onClick={() => startEditing(hotel)}>Edit</button>
-                  <button onClick={() => handleDeleteHotel(hotel.hotel_id)}>Delete</button>
+                  <button onClick={() => startEditing(hotel)}>UPDATE</button>
+                  <button onClick={() => handleDeleteHotel(hotel.hotel_id)}>DELETE</button>
                 </div>
               </>
             )}
