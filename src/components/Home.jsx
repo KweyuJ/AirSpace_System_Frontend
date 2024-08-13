@@ -1,12 +1,12 @@
-// Home.jsx
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { FaPlane, FaHotel } from 'react-icons/fa';
+import { FaPlane, FaHotel, FaUserShield } from 'react-icons/fa'; // FaUserShield for admin icon
 import homeImage from '../assets/landingpage.png';
-import '../index.css'; // Ensure your CSS is imported
+import '../index.css';
 
 function Home() {
-  const isAuthenticated = !!localStorage.getItem('access_token'); // Check for token in local storage
+  const isAuthenticated = !!localStorage.getItem('access_token'); // Check for token
+  const isAdmin = localStorage.getItem('role') === 'admin'; // Check if user is an admin
 
   return (
     <div className="home">
@@ -26,6 +26,14 @@ function Home() {
                 <p className="icon-text">AirEscape Hotels</p>
               </Link>
             </div>
+            {isAdmin && (
+              <div className="icon-box">
+                <Link to="/dashboard" className="icon-link">
+                  <FaUserShield className="home-icon" />
+                  <p className="icon-text">Admin Dashboard</p>
+                </Link>
+              </div>
+            )}
           </>
         )}
       </div>

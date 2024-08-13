@@ -116,7 +116,7 @@ const SignUp = () => {
         const result = await response.json();
         setSuccessMessage("User signed up successfully!");
         setTimeout(() => {
-          navigate("/", { replace: true });
+          navigate("/login", { replace: true });
         }, 3000);
       } else {
         const errorResult = await response.json();
