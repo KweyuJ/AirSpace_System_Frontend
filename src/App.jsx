@@ -4,12 +4,13 @@ import { FaHome, FaPlane, FaHotel, FaPhone, FaSignInAlt, FaUserPlus, FaInfoCircl
 import Home from './components/Home';
 import Flights from './components/Flights';
 import Hotels from './components/Hotels';
-import SingleHotelPage from "./components/SingleHotel"
+import SingleHotelPage from "./components/SingleHotel";
 import ContactUs from './components/ContactUs';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import AboutUs from './components/About';
 import HotelReservationForm from './components/Hotelreservationform'; 
+import Generateformpdf from './components/Generateformpdf'; // Import the new component
 import logo from './assets/logo.png';
 import './index.css';
 
@@ -68,6 +69,7 @@ function App() {
           <Route path="/contactus" element={<ContactUs />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
+          <Route path="/pdf-view" element={<Generateformpdf />} /> 
         </Routes>
       </main>
     </div>

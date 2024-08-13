@@ -46,7 +46,6 @@ const SingleHotelPage = () => {
       <div className="hotel-details">
         <h1>{hotel.name}</h1>
         <p>{hotel.price}</p>
-        <p>{hotel.reviews} reviews</p>
         <div className="hotel-description">
           <p>{hotel.description}</p>
         </div>

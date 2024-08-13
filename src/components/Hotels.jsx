@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import "./App.css";
 
 // Header Component
-const Header = () => {
+const Header = ({ searchQuery, onSearchChange, onSearchSubmit }) => {
   return (
     <header className="App-header">
       <p>Where Air Meets Escape</p>
-      <form className="search-form">
-        <input type="text" placeholder="Destination" />
+      <form className="search-form" onSubmit={onSearchSubmit}>
+        <input
+          type="text"
+          placeholder="Destination"
+          value={searchQuery}
+          onChange={onSearchChange}
+        />
         <button type="submit">Search</button>
       </form>
     </header>
@@ -36,7 +41,7 @@ const MiddleSection = () => {
           </div>
         </div>
         <div className="feature">
-          <img
+        <img
             src="/src/assets/feature2.png"
             alt="Best Price Payments"
             className="feature-image"
@@ -95,7 +100,7 @@ const HotelSection = ({ hotels }) => {
             <p>{hotel.amenities}</p>
             <p>Price per night: KES {hotel.price_per_night}</p>
             
-            <Link to={`/hotels/${hotel.hotel_id}`} key={hotel.hotel_id}>
+            <Link to={`/hotels/${hotel.hotel_id}`}>
               <button type="button" className="view-button">
                 View
               </button>
@@ -109,6 +114,8 @@ const HotelSection = ({ hotels }) => {
 
 const App = () => {
   const [hotels, setHotels] = useState([]);
+  const [filteredHotels, setFilteredHotels] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
     const fetchHotels = async () => {
@@ -120,8 +127,8 @@ const App = () => {
         }
 
         const data = await response.json();
-        console.log("Fetched hotels:", data); 
         setHotels(data);
+        setFilteredHotels(data); 
       } catch (error) {
         console.error("Error fetching hotels:", error);
       }
@@ -130,13 +137,31 @@ const App = () => {
     fetchHotels();
   }, []);
 
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    const lowerCaseQuery = searchQuery.toLowerCase();
+    const filtered = hotels.filter((hotel) =>
+      hotel.location.toLowerCase().includes(lowerCaseQuery)
+    );
+    setFilteredHotels(filtered);
+  };
+
   return (
     <div className="App">
-      <Header />
+      <Header
+        searchQuery={searchQuery}
+        onSearchChange={handleSearchChange}
+        onSearchSubmit={handleSearchSubmit}
+      />
       <MiddleSection />
-      <HotelSection hotels={hotels} />
+      <HotelSection hotels={filteredHotels} />
     </div>
   );
 };
 
 export default App;
+
