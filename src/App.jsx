@@ -79,11 +79,11 @@ function App() {
                 <FaSignInAlt /> Sign Out
               </a>
             </li>
-            <li>
+            {/* <li>
               <Link to="/dashboard">
                 <FaUserPlus /> Admin Dashboard
               </Link>
-            </li>
+            </li> */}
           </ul>
         </nav>
         <main>
