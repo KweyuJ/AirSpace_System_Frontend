@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Grid,
   Typography,
@@ -70,6 +70,13 @@ const SignInForm = ({ signInWithEmail, handleClose }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [error, setError] = useState("");
   const navigate = useNavigate();
+
+  useEffect(() => {
+    const savedEmail = localStorage.getItem("email");
+    if (savedEmail) {
+      setFormData((prevData) => ({ ...prevData, email: savedEmail }));
+    }
+  }, []);
 
   const handleInputChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
