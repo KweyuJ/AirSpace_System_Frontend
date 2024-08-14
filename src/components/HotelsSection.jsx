@@ -59,27 +59,42 @@ const HotelsSection = () => {
 
   const handleDeleteHotel = async (id) => {
     try {
-      const token = localStorage.getItem('token');
+      const token = localStorage.getItem('access_token');
+      if (!token) {
+        console.error('No token found. Please log in.');
+        setAlert({ type: 'error', message: 'No token found. Please log in.' });
+        setTimeout(() => setAlert(null), 3000);
+        return;
+      }
       const response = await axios.delete(`http://127.0.0.1:5000/hotels/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
+  
       if (response.status === 200) {
         setHotels(hotels.filter(hotel => hotel.hotel_id !== id));
         setAlert({ type: 'success', message: 'Hotel deleted successfully!' });
-        setTimeout(() => setAlert(null), 3000);
       } else {
         console.error('Failed to delete hotel:', response.data);
         setAlert({ type: 'error', message: 'Failed to delete hotel.' });
-        setTimeout(() => setAlert(null), 3000);
       }
+      setTimeout(() => setAlert(null), 3000);
     } catch (error) {
       console.error('Error deleting hotel:', error);
-      setAlert({ type: 'error', message: 'Error deleting hotel.' });
+      if (error.response && error.response.status === 403) {
+        setAlert({ type: 'error', message: 'Admin access required to delete hotel.' });
+      } else {
+        setAlert({ type: 'error', message: 'Error deleting hotel.' });
+      }
       setTimeout(() => setAlert(null), 3000);
     }
   };
+  
+  
+  
+  
+
 
   const handleUpdateHotel = async () => {
     if (!editingHotel || !editingHotel.hotel_id) {

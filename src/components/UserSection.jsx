@@ -3,7 +3,6 @@ import './UserSection.css';
 
 const UserSection = () => {
   const [users, setUsers] = useState([]);
-  const token = localStorage.getItem('access_token'); // Retrieve token from local storage
 
   useEffect(() => {
     const fetchUsers = async () => {
@@ -11,19 +10,12 @@ const UserSection = () => {
         const response = await fetch('http://127.0.0.1:5000/users', {
           method: 'GET',
           headers: {
-            'Authorization': `Bearer ${token}`, // Include token in headers
             'Content-Type': 'application/json'
           }
         });
 
         if (!response.ok) {
-          if (response.status === 401) {
-            console.error('Unauthorized: Token might be expired or invalid.');
-          } else if (response.status === 403) {
-            console.error('Forbidden: Admin access required.');
-          } else {
-            console.error('Error fetching users:', response.statusText);
-          }
+          console.error('Error fetching users:', response.statusText);
           throw new Error('Error fetching users');
         }
 
@@ -35,7 +27,7 @@ const UserSection = () => {
     };
 
     fetchUsers();
-  }, [token]);
+  }, []);
 
   return (
     <div className="user-section">
@@ -44,7 +36,8 @@ const UserSection = () => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th>First Name</th>
+            <th>Last Name</th>
             <th>Email</th>
             <th>Role</th>
           </tr>
@@ -52,16 +45,17 @@ const UserSection = () => {
         <tbody>
           {users.length > 0 ? (
             users.map(user => (
-              <tr key={user.id}>
-                <td>{user.id}</td>
-                <td>{user.name}</td>
+              <tr key={user.user_id}>
+                <td>{user.user_id}</td>
+                <td>{user.first_name}</td>
+                <td>{user.last_name}</td>
                 <td>{user.email}</td>
                 <td>{user.role}</td>
               </tr>
             ))
           ) : (
             <tr>
-              <td colSpan="4">No users found</td>
+              <td colSpan="5">No users found</td>
             </tr>
           )}
         </tbody>
