@@ -32,6 +32,14 @@ const HotelsSection = () => {
   };
 
   const handleAddHotel = async () => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      console.error('No token found. Please log in.');
+      setAlert({ type: 'error', message: 'No token found. Please log in.' });
+      setTimeout(() => setAlert(null), 3000);
+      return;
+    }
+  
     try {
       const response = await axios.post('http://127.0.0.1:5000/hotels', {
         name: newHotel.name,
@@ -39,7 +47,12 @@ const HotelsSection = () => {
         price_per_night: parseFloat(newHotel.price_per_night),
         image_url: newHotel.image_url,
         amenities: newHotel.amenities
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
+  
       setHotels([...hotels, response.data]);
       setNewHotel({
         name: '',
@@ -52,10 +65,15 @@ const HotelsSection = () => {
       setTimeout(() => setAlert(null), 3000); // Hide alert after 3 seconds
     } catch (error) {
       console.error('Error adding hotel:', error);
-      setAlert({ type: 'error', message: 'Error adding hotel.' });
+      if (error.response && error.response.status === 403) {
+        setAlert({ type: 'error', message: 'Admin access required to add hotel.' });
+      } else {
+        setAlert({ type: 'error', message: 'Error adding hotel.' });
+      }
       setTimeout(() => setAlert(null), 3000);
     }
   };
+  
 
   const handleDeleteHotel = async (id) => {
     try {
