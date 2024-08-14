@@ -1,0 +1,41 @@
+.user-section {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .user-section h2 {
+    margin-bottom: 20px;
+    color: #b71c1c; /* Theme color */
+  }
+  
+  .user-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .user-table th,
+  .user-table td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .user-table th {
+    background-color: #b71c1c; /* Theme color */
+    color: white;
+  }
+  
+  .user-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .user-table td {
+    font-size: 14px;
+  }
+  
+  .user-table tr td:nth-child(1) {
+    font-weight: bold;
+  }
+  

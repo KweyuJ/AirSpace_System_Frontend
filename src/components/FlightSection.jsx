@@ -38,9 +38,28 @@ const FlightSection = () => {
   };
 
   const handleAddFlight = async () => {
+    // Convert dates to the correct format
+    const departureDate = new Date(newFlight.departure_date).toISOString();
+    const arrivalDate = new Date(newFlight.arrival_date).toISOString();
+  
+    const flightData = {
+      flight_number: newFlight.flight_number,
+      departure_city: newFlight.departure_city,
+      arrival_city: newFlight.arrival_city,
+      departure_date: departureDate.split('T')[0], // Only date part
+      arrival_date: arrivalDate.split('T')[0], // Only date part
+      departure_time: newFlight.departure_date.split('T')[1] + ":00", // Time part
+      arrival_time: newFlight.arrival_date.split('T')[1] + ":00", // Time part
+      price: newFlight.price,
+      seats_available: newFlight.seats_available,
+      trip_type: 'oneway' // Optional, add this only if applicable
+    };
+  
     try {
-      await axios.post('http://127.0.0.1:5000/flights', newFlight);
-      fetchFlights();
+      const response = await axios.post('http://127.0.0.1:5000/flights', flightData);
+      console.log('Flight added:', response.data);
+  
+      // Reset form fields
       setNewFlight({
         flight_number: '',
         departure_city: '',
@@ -50,10 +69,13 @@ const FlightSection = () => {
         price: '',
         seats_available: ''
       });
+  
+      fetchFlights(); // Refresh the list of flights
     } catch (error) {
       console.error('Error adding flight:', error);
     }
   };
+  
 
   const handleDeleteFlight = async (flightId) => {
     try {
@@ -134,14 +156,14 @@ const FlightSection = () => {
       <div className="flight-card-list">
         {flights.length > 0 ? (
           flights.map(flight => (
-            <div key={flight.id} className="flight-card-item">
+            <div key={flight.flight_id} className="flight-card-item">
               <h3 className="flight-card-title">{flight.flight_number}</h3>
               <p className="flight-card-detail">From: {flight.departure_city} - To: {flight.arrival_city}</p>
               <p className="flight-card-detail">Departure: {flight.departure_date}</p>
               <p className="flight-card-detail">Arrival: {flight.arrival_date}</p>
               <p className="flight-card-detail">Price: KSH{flight.price}</p>
               <p className="flight-card-detail">Seats Available: {flight.seats_available}</p>
-              <button className="flight-card-action-button" onClick={() => handleDeleteFlight(flight.id)}>Delete</button>
+              <button className="flight-card-action-button" onClick={() => handleDeleteFlight(flight.flight_id)}>Delete</button>
             </div>
           ))
         ) : (

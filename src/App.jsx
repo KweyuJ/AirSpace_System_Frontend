@@ -28,11 +28,15 @@ import Dashboard from "./components/Dashboard";
 import HotelsSection from "./components/HotelsSection";
 import FlightSection from "./components/FlightSection";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AdminRoute from "./components/AdminRoute";  // Import the new AdminRoute component
-import Generateformpdf from './components/Generateformpdf'; 
+import AdminRoute from "./components/AdminRoute";
+import UserSection from "./components/UserSection";
+import Generateformpdf from "./components/Generateformpdf";
+import useAuth from "./hooks/useAuth"; // Import the custom hook
+import UserProfile from "./components/UserProfile";
 
 function App() {
   const navigate = useNavigate();
+  const isLoggedIn = useAuth();
 
   function handleSignOut() {
     console.log("Signing out...");
@@ -65,26 +69,27 @@ function App() {
                 <FaPhone /> Contact Us
               </Link>
             </li>
-            <li>
-              <Link to="/login">
-                <FaSignInAlt /> Log In
-              </Link>
-            </li>
-            <li>
-              <Link to="/signup">
-                <FaUserPlus /> Sign Up
-              </Link>
-            </li>
-            <li>
-              <a href="#sign-out" onClick={handleSignOut}>
-                <FaSignInAlt /> Sign Out
-              </a>
-            </li>
-            {/* <li>
-              <Link to="/dashboard">
-                <FaUserPlus /> Admin Dashboard
-              </Link>
-            </li> */}
+            {!isLoggedIn && (
+              <>
+                <li>
+                  <Link to="/login">
+                    <FaSignInAlt /> Log In
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/signup">
+                    <FaUserPlus /> Sign Up
+                  </Link>
+                </li>
+              </>
+            )}
+            {isLoggedIn && (
+              <li>
+                <a href="#sign-out" onClick={handleSignOut}>
+                  <FaSignInAlt /> Sign Out
+                </a>
+              </li>
+            )}
           </ul>
         </nav>
         <main>
@@ -102,6 +107,7 @@ function App() {
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/hotels-section" element={<HotelsSection />} />
               <Route path="/admin/flights" element={<FlightSection />} />
+              <Route path="/admin/users" element={<UserSection />} />
             </Route>
 
             {/* Protected Routes */}
@@ -113,7 +119,7 @@ function App() {
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/hotels/:id" element={<SingleHotelPage />} />
             <Route path="/hotels/:id/book" element={<HotelReservationForm />} />
-            <Route path="/pdf-view" element={<Generateformpdf />} /> 
+            <Route path="/pdf-view" element={<Generateformpdf />} />
           </Routes>
         </main>
       </div>
