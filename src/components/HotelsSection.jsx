@@ -74,7 +74,6 @@ const HotelsSection = () => {
     }
   };
   
-
   const handleDeleteHotel = async (id) => {
     try {
       const token = localStorage.getItem('access_token');
@@ -108,18 +107,21 @@ const HotelsSection = () => {
       setTimeout(() => setAlert(null), 3000);
     }
   };
-  
-  
-  
-  
-
 
   const handleUpdateHotel = async () => {
     if (!editingHotel || !editingHotel.hotel_id) {
       console.error('No hotel selected for editing or invalid hotel ID.');
       return;
     }
-
+  
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      console.error('No token found. Please log in.');
+      setAlert({ type: 'error', message: 'No token found. Please log in.' });
+      setTimeout(() => setAlert(null), 3000);
+      return;
+    }
+  
     try {
       const response = await axios.patch(`http://127.0.0.1:5000/hotels/${editingHotel.hotel_id}`, {
         name: editingHotel.name,
@@ -127,24 +129,29 @@ const HotelsSection = () => {
         price_per_night: parseFloat(editingHotel.price_per_night),
         image_url: editingHotel.image_url,
         amenities: editingHotel.amenities
+      }, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
+  
       setHotels(hotels.map(hotel => (hotel.hotel_id === editingHotel.hotel_id ? response.data : hotel)));
       setEditingHotel(null);
       setAlert({ type: 'success', message: 'Hotel updated successfully!' });
       setTimeout(() => setAlert(null), 3000);
     } catch (error) {
       console.error('Error updating hotel:', error);
-      setAlert({ type: 'error', message: 'Error updating hotel.' });
+      if (error.response && error.response.status === 403) {
+        setAlert({ type: 'error', message: 'Admin access required to update hotel.' });
+      } else {
+        setAlert({ type: 'error', message: 'Error updating hotel.' });
+      }
       setTimeout(() => setAlert(null), 3000);
     }
   };
 
   const startEditing = (hotel) => {
-    if (hotel && hotel.hotel_id) {
-      setEditingHotel({ ...hotel });
-    } else {
-      console.error('Invalid hotel object for editing:', hotel);
-    }
+    setEditingHotel({ ...hotel });
   };
 
   const cancelEditing = () => {
