@@ -13,7 +13,7 @@ const SingleHotelPage = () => {
   useEffect(() => {
     const fetchHotelData = async () => {
       try {
-        const response = await axios.get(`http://127.0.0.1:5000/hotels/${id}`);
+        const response = await axios.get(`https://airspace-system-backend-4.onrender.com/hotels/${id}`);
         setHotel(response.data);
       } catch (error) {
         console.error("Error fetching hotel data:", error);

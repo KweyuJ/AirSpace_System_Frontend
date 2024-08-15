@@ -20,7 +20,7 @@ const FlightSection = () => {
 
   const fetchFlights = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/flights');
+      const response = await axios.get('https://airspace-system-backend-4.onrender.com/flights');
       if (Array.isArray(response.data)) {
         setFlights(response.data);
       } else {
@@ -63,7 +63,7 @@ const FlightSection = () => {
     };
   
     try {
-      const response = await axios.post('http://127.0.0.1:5000/flights', flightData, {
+      const response = await axios.post('https://airspace-system-backend-4.onrender.com/flights', flightData, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -110,7 +110,7 @@ const FlightSection = () => {
     }
   
     try {
-      const response = await axios.delete(`http://127.0.0.1:5000/flights/${flightId}`, {
+      const response = await axios.delete(`https://airspace-system-backend-4.onrender.com/flights/${flightId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }

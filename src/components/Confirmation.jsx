@@ -35,7 +35,7 @@ const Confirmation = () => {
     setPaymentStatus("Prompt sent, waiting for payment...");
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/stkpush", {
+      const response = await fetch("https://airspace-system-backend-4.onrender.com/stkpush", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
