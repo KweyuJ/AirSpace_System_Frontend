@@ -783,15 +783,16 @@ h2 {
 }
 
 .payment-option {
-  margin-top: 30px;
+  margin-top: 10px;
   text-align: center;
 }
 
 .mpesa-button {
-  background-color: #006633;
+  background-color: #b3b9b6;
   color: #fbfdfc;
   font-weight: bold;
-  padding: 12px 25px;
+  padding: 8px 8px; /* Reduced padding for a smaller button */
+  font-size: 14px; /* Smaller font size */
   border: none;
   border-radius: 5px;
   cursor: pointer;
@@ -803,7 +804,7 @@ h2 {
 }
 
 .mpesa-button:hover {
-  background-color: #004d26; /* Darker green on hover */
+  background-color: #4b5550; /* Darker green on hover */
 }
 
 .mpesa-button img {

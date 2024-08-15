@@ -28,7 +28,7 @@ import Dashboard from "./components/Dashboard";
 import HotelsSection from "./components/HotelsSection";
 import FlightSection from "./components/FlightSection";
 import ProtectedRoute from "./components/ProtectedRoute";
-import AdminRoute from "./components/AdminRoute";  // Import the new AdminRoute component
+import AdminRoute from "./components/AdminRoute"; // Import the new AdminRoute component
 
 function App() {
   const navigate = useNavigate();
