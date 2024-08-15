@@ -1,0 +1,120 @@
+.dashboard-wrapper {
+    display: flex;
+    min-height: 100vh;
+    background-color: #ffffff; /* White background for a clean look */
+}
+
+.sidebar {
+    width: 200px;
+    background-color: #b71c1c; /* Your theme's red color for sidebar */
+    color: white;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+    font-family: 'Roboto', sans-serif;
+}
+
+.sidebar h2 {
+    font-size: 1.7rem;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ffffff; /* Nice blue for an accent underline */
+    padding-bottom: 10px;
+    color: #ffffff;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin: 20px 0;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: white; /* White text color */
+    font-size: 1.2rem;
+    display: block;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    padding: 8px 8px;
+    border-radius: 8px;
+    background-color: rgba(255, 255, 255, 0.1); /* Light white background */
+}
+
+.sidebar nav ul li a:hover {
+    background-color: #3b92e4; /* Blue color on hover */
+    color: #ffffff; /* White text color on hover */
+    transform: scale(1.05);
+}
+
+.dashboard-main {
+    flex-grow: 1;
+    padding: 40px;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.dashboard-main h1 {
+    font-size: 2rem;
+    color: #b71c1c; /* Red color for the main heading */
+    margin-bottom: 10px;
+}
+
+.dashboard-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.dashboard-graphs {
+    width: 100%;
+    max-width: 1400px;
+    margin-top: 5px;
+}
+
+.graph-placeholder {
+    background-color: #e0e0e0;
+    height: 300px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: 1.2rem;
+    color: #b71c1c;
+}
+
+@media (max-width: 768px) {
+    .dashboard-wrapper {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+        text-align: center;
+        box-shadow: none;
+    }
+
+    .dashboard-main {
+        padding: 20px;
+    }
+
+    .dashboard-graphs {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .sidebar nav ul li a {
+        font-size: 1rem;
+    }
+
+    .dashboard-main h1 {
+        font-size: 2rem;
+    }
+
+    .graph-placeholder {
+        height: 200px;
+        font-size: 1rem;
+    }
+}
