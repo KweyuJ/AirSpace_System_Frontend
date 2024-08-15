@@ -31,8 +31,9 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import AdminRoute from "./components/AdminRoute";
 import UserSection from "./components/UserSection";
 import Generateformpdf from "./components/Generateformpdf";
-import useAuth from "./hooks/useAuth"; // Import the custom hook
+import useAuth from "./hooks/useAuth";
 import UserProfile from "./components/UserProfile";
+import Footer from "./components/Footer"; // Import the Footer component
 
 function App() {
   const navigate = useNavigate();
@@ -101,27 +102,23 @@ function App() {
             <Route path="/results" element={<FlightResults />} />
             <Route path="/passenger-details" element={<PassengerDetails />} />
             <Route path="/confirmation" element={<Confirmation />} />
-
-            {/* Admin Routes */}
             <Route element={<AdminRoute />}>
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/hotels-section" element={<HotelsSection />} />
               <Route path="/admin/flights" element={<FlightSection />} />
               <Route path="/admin/users" element={<UserSection />} />
             </Route>
-
-            {/* Protected Routes */}
             <Route element={<ProtectedRoute />}>
               <Route path="/flights" element={<Flights />} />
               <Route path="/hotels" element={<Hotels />} />
             </Route>
-
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/hotels/:id" element={<SingleHotelPage />} />
             <Route path="/hotels/:id/book" element={<HotelReservationForm />} />
             <Route path="/pdf-view" element={<Generateformpdf />} />
           </Routes>
         </main>
+        <Footer /> 
       </div>
     </FlightProvider>
   );

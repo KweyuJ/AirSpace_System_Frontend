@@ -15,7 +15,7 @@ import {
   VisibilityOff,
   Email,
 } from "@mui/icons-material";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom"; // Make sure Link is imported here
 import image from "../assets/login.png";
 
 const SignInOptions = ({ handleOpen }) => {
@@ -98,9 +98,13 @@ const SignInForm = ({ signInWithEmail, handleClose }) => {
         localStorage.setItem("role", result.role);
         localStorage.setItem("id", result.id);
         setSuccessMessage("User signed in successfully!");
-        setTimeout(() => {
+
+        // Redirect based on role
+        if (result.role === "admin") {
+          navigate("/dashboard", { replace: true });
+        } else {
           navigate("/", { replace: true });
-        }, 3000);
+        }
       } else {
         const errorResult = await response.json();
         setError(

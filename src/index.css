@@ -77,16 +77,24 @@ body {
   height: 100vh;
   background-color: #f5f5f5;
 } */
-.home {
-  position: relative;
+/* HOme styling */
+.home-page {
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  /* height: 100vh; */
+  display: flex;
+  flex-direction: column;
 }
 
-.full-screen-image {
+.home-header-section {
+  position: relative;
   width: 100%;
-  height: 100%;
+  height: 40vh; /* Increased height for more space at the top */
+  overflow: hidden;
+  margin: 0px;
+}
+
+.home-full-screen-image {
+  width: 100%;
   object-fit: cover;
   position: absolute;
   top: 0;
@@ -94,53 +102,170 @@ body {
   z-index: -1;
 }
 
-.icon-container {
-  position: absolute;
-  top: 5%; /* Position the icons near the top */
-  left: 50%;
-  transform: translateX(-50%);
+.home-icon-container {
   display: flex;
   justify-content: center;
-  gap: 100px; /* Space between the icons */
+  align-items: center;
+  gap: 20px;
+  position: absolute; /* Positioning the container absolutely within the header */
+  top: 20px; /* Adjust this value to fine-tune the distance from the top */
+  left: 50%;
+  transform: translateX(-50%); /* Centers the container horizontally */
+  z-index: 2; /* Ensure the icons appear above the image */
+  width: 100%; /* Ensures the container spans the width of the header */
 }
 
-.icon-box {
-  background-color: #b71c1c; /* Red background with slight transparency */
+.home-icon-box {
+  background-color: rgb(199, 217, 230); /* Set the background color to white */
   padding: 20px;
   border-radius: 10px;
   text-align: center;
-  height: fit-content;
+  height: 50px;
   width: fit-content;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  border: 2px solid #f8f7f780; /* Add a red border to create the outer margin effect */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
+  
 }
 
-.icon-link {
+.home-icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px; /* Add space between the icon boxes */
+}
+.home-icon-link {
   display: flex;
   flex-direction: column;
   align-items: center;
-  text-decoration: none;
+  text-decoration: none; /* Remove underline from links */
 }
 
 .home-icon {
-  color: white;
-  font-size: 3em; /* Size of the icons */
+  color: #b71c1c; /* Change icon color to match the red theme */
+  font-size: 2em;
   transition: transform 0.3s ease;
 }
 
-.icon-text {
-  color: white;
-  font-size: 1.2em; /* Size of the text below the icons */
+.home-icon-text {
+  color: #b71c1c; /* Change text color to match the red theme */
+  font-size: 1.2em;
   margin-top: 10px;
 }
 
-.icon-box:hover {
-  transform: translateY(-10px); /* Lift the box slightly on hover */
-  background-color: #b71c1c; /* Darker red on hover */
+.home-icon-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Increase shadow on hover for emphasis */
 }
 
-.icon-link:hover .home-icon {
-  transform: scale(1.1); /* Slightly enlarge the icon on hover */
+.home-icon-link:hover .home-icon {
+  transform: scale(1.1);
 }
+
+/* Middle Section */
+.home-middle-section {
+  padding: 40px 20px;
+  background-color: #f9f9f9;
+  text-align: center;
+  color: black;
+}
+
+.home-middle-section h2 {
+  margin-bottom: 30px;
+  color: rgb(199, 33, 33);
+}
+
+/* Feature styles */
+.home-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.home-feature {
+  background-color: white;
+  border: 1px solid #ddd;
+  padding: 20px;
+  margin: 10px;
+  flex: 1 1 300px;
+  box-sizing: border-box;
+  color: black;
+}
+
+.home-feature h3 {
+  margin-bottom: 10px;
+  color: black;
+}
+
+/* Bottom Section */
+.home-bottom-section {
+  padding: 20px;
+  background-color: #e0e0e0;
+  text-align: center; 
+}
+
+.home-bottom-section h3 {
+  margin-bottom: 20px;
+  color: black;
+}
+
+/* Destination Cards */
+.home-destination-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
+  gap: 20px; /* Adjust the space between the cards */
+}
+
+/* Card Styling */
+.destination-card {
+  background-color: white;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Image Styling */
+.destination-card img {
+  width: 100%;
+  height: 500px; /* Increased height for taller images */
+  object-fit: cover; /* Ensure image covers the card */
+  transition: transform 0.3s ease; /* Smooth scale transition */
+}
+
+/* Card Content Styling */
+.destination-card-content {
+  padding: 5px;
+  text-align: center;
+  flex: 1; /* Allows content to grow if needed */
+  
+}
+
+.destination-card-content h4 {
+  margin: 10px 0;
+  color: black;
+  font-size: 1.2em;
+}
+
+.destination-card-content p {
+  color: #555;
+  font-size: 0.9em;
+}
+
+.destination-card:hover {
+  transform: translateY(-5px); /* Slight lift effect on hover */
+}
+
+.destination-card img:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+}
+
+
+
+
 
 /* .full-screen-image {
   max-width: 100%;
@@ -159,7 +284,7 @@ body {
 }
 
 h1 {
-  color: #e63946; /* Coral Red */
+  color: #e63946; 
   margin-bottom: 20px;
   text-align: center;
 }
@@ -237,7 +362,7 @@ textarea {
   background-color: #d32f2f; /* Darker Coral Red */
 }
 
-.about-container {
+/* .about-container {
   max-width: 900px;
   margin: 0 auto;
   padding: 20px;
@@ -248,8 +373,7 @@ textarea {
 }
 
 h1, h2 {
-  color: #e63946; /* Coral Red */
-}
+  color: #e63946; 
 
 .intro-section p {
   font-size: 18px;
@@ -258,7 +382,7 @@ h1, h2 {
 }
 
 .highlight {
-  color: #e63946; /* Coral Red */
+  color: #e63946; 
   font-weight: bold;
 }
 
@@ -294,7 +418,7 @@ h1 {
 h2 {
   font-size: 28px;
   margin-bottom: 15px;
-}
+} */
 
 
 

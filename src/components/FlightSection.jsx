@@ -38,6 +38,13 @@ const FlightSection = () => {
   };
 
   const handleAddFlight = async () => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      console.error('No token found. Please log in.');
+      alert('No token found. Please log in.');
+      return;
+    }
+  
     // Convert dates to the correct format
     const departureDate = new Date(newFlight.departure_date).toISOString();
     const arrivalDate = new Date(newFlight.arrival_date).toISOString();
@@ -56,35 +63,76 @@ const FlightSection = () => {
     };
   
     try {
-      const response = await axios.post('http://127.0.0.1:5000/flights', flightData);
-      console.log('Flight added:', response.data);
-  
-      // Reset form fields
-      setNewFlight({
-        flight_number: '',
-        departure_city: '',
-        arrival_city: '',
-        departure_date: '',
-        arrival_date: '',
-        price: '',
-        seats_available: ''
+      const response = await axios.post('http://127.0.0.1:5000/flights', flightData, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       });
   
-      fetchFlights(); // Refresh the list of flights
+      if (response.status === 201) {
+        console.log('Flight added:', response.data);
+  
+        // Reset form fields
+        setNewFlight({
+          flight_number: '',
+          departure_city: '',
+          arrival_city: '',
+          departure_date: '',
+          arrival_date: '',
+          price: '',
+          seats_available: ''
+        });
+  
+        fetchFlights(); // Refresh the list of flights
+        alert('Flight added successfully!');
+      } else {
+        console.error('Failed to add flight:', response.data);
+        alert('Failed to add flight.');
+      }
     } catch (error) {
       console.error('Error adding flight:', error);
+      if (error.response && error.response.status === 403) {
+        alert('Admin access required to add flight.');
+      } else {
+        alert('Error adding flight.');
+      }
     }
   };
+  
   
 
   const handleDeleteFlight = async (flightId) => {
+    const token = localStorage.getItem('access_token');
+    if (!token) {
+      console.error('No token found. Please log in.');
+      alert('No token found. Please log in.');
+      return;
+    }
+  
     try {
-      await axios.delete(`http://127.0.0.1:5000/flights/${flightId}`);
-      fetchFlights();
+      const response = await axios.delete(`http://127.0.0.1:5000/flights/${flightId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+  
+      if (response.status === 200) {
+        setFlights(flights.filter(flight => flight.flight_id !== flightId));
+        alert('Flight deleted successfully!');
+      } else {
+        console.error('Failed to delete flight:', response.data);
+        alert('Failed to delete flight.');
+      }
     } catch (error) {
       console.error('Error deleting flight:', error);
+      if (error.response && error.response.status === 403) {
+        alert('Admin access required to delete flight.');
+      } else {
+        alert('Error deleting flight.');
+      }
     }
   };
+  
 
   return (
     <div className="flight-section-container">
