@@ -23,7 +23,7 @@ import AboutUs from "./components/About";
 import PassengerDetails from "./components/PassengerDetails";
 import Confirmation from "./components/Confirmation";
 import HotelReservationForm from "./components/Hotelreservationform";
-import logo from "./assets/logo.png";
+import logo from "./assets/logo.jpeg";
 import "./index.css";
 import { FlightProvider } from "./context/FlightContext";
 import FlightResults from "./components/FlightResults";
