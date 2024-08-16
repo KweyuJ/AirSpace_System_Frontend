@@ -20,7 +20,7 @@ const HotelsSection = () => {
 
   const fetchHotels = async () => {
     try {
-      const response = await axios.get('http://127.0.0.1:5000/hotels');
+      const response = await axios.get('https://airspace-system-backend-4.onrender.com/hotels');
       if (Array.isArray(response.data)) {
         setHotels(response.data);
       } else {
@@ -41,7 +41,7 @@ const HotelsSection = () => {
     }
   
     try {
-      const response = await axios.post('http://127.0.0.1:5000/hotels', {
+      const response = await axios.post('https://airspace-system-backend-4.onrender.com/hotels', {
         name: newHotel.name,
         location: newHotel.location,
         price_per_night: parseFloat(newHotel.price_per_night),
@@ -83,7 +83,7 @@ const HotelsSection = () => {
         setTimeout(() => setAlert(null), 3000);
         return;
       }
-      const response = await axios.delete(`http://127.0.0.1:5000/hotels/${id}`, {
+      const response = await axios.delete(`https://airspace-system-backend-4.onrender.com/hotels/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
@@ -107,7 +107,7 @@ const HotelsSection = () => {
       setTimeout(() => setAlert(null), 3000);
     }
   };
-
+  
   const handleUpdateHotel = async () => {
     if (!editingHotel || !editingHotel.hotel_id) {
       console.error('No hotel selected for editing or invalid hotel ID.');
@@ -123,7 +123,7 @@ const HotelsSection = () => {
     }
   
     try {
-      const response = await axios.patch(`http://127.0.0.1:5000/hotels/${editingHotel.hotel_id}`, {
+      const response = await axios.patch(`https://airspace-system-backend-4.onrender.com/hotels/${editingHotel.hotel_id}`, {
         name: editingHotel.name,
         location: editingHotel.location,
         price_per_night: parseFloat(editingHotel.price_per_night),

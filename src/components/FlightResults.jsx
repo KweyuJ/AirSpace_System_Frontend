@@ -36,7 +36,7 @@ const FlightResults = () => {
                         </p>
                         <div className="flight-timing">
                             <span className="departure-time">{flight.departure_time}</span>
-                            <span className="arrow">→</span>
+                            <span className="arrow"></span>
                             <span className="arrival-time">{flight.arrival_time}</span>
                             <span className="flight-number">{flight.flight_number}</span>
                         </div>
@@ -73,7 +73,7 @@ const FlightResults = () => {
                                         </p>
                                         <div className="flight-timing">
                                             <span className="departure-time">{flight.departure_time}</span>
-                                            <span className="arrow">→</span>
+                                            <span className="arrow"></span>
                                             <span className="arrival-time">{flight.arrival_time}</span>
                                             <span className="flight-number">{flight.flight_number}</span>
                                         </div>

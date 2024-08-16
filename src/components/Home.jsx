@@ -6,12 +6,12 @@ import feature1 from '../assets/feature1.png';
 import feature2 from '../assets/feature2.png';
 import feature3 from '../assets/feature3.png';
 import feature4 from '../assets/feature4.png';
-import diani from '../assets/diani.jpeg';
+import diani from '../assets/diani2.jpeg';
 import lamu from '../assets/lamu.jpeg';
-import kilifi from '../assets/kilifi.jpeg';
-import kakamega from '../assets/kakamega.jpeg';
-import malindi from '../assets/malindi.jpeg';
-import naivasha from '../assets/naivasha.jpeg';
+import kilifi from '../assets/kilifi2.jpeg';
+import kakamega from '../assets/kakamega2.jpeg';
+import malindi from '../assets/malindi2.jpeg';
+import naivasha from '../assets/naivasha2.jpeg';
 import '../index.css';
 
 
@@ -24,30 +24,17 @@ function Home() {
       {/* Header Section */}
       <header className="home-header-section">
         <img src={homeImage} alt="Home" className="home-full-screen-image" />
+        <div className="home-welcome-text">
+          AirEscape, your gateway to the great
+        </div>
         <div className="home-icon-container">
-          {isAuthenticated && (
-            <>
-              <div className="home-icon-box">
-                <Link to="/flights" className="home-icon-link">
-                  <FaPlane className="home-icon" />
-                  <p className="home-icon-text">AirEscape Flights</p>
-                </Link>
-              </div>
-              <div className="home-icon-box">
-                <Link to="/hotels" className="home-icon-link">
-                  <FaHotel className="home-icon" />
-                  <p className="home-icon-text">AirEscape Hotels</p>
-                </Link>
-              </div>
-              {isAdmin && (
-                <div className="home-icon-box">
-                  <Link to="/dashboard" className="home-icon-link">
-                    <FaUserShield className="home-icon" />
-                    <p className="home-icon-text">Admin Dashboard</p>
-                  </Link>
-                </div>
-              )}
-            </>
+          {isAuthenticated && isAdmin && (
+            <div className="home-icon-box">
+              <Link to="/dashboard" className="home-icon-link">
+                {/* <FaUserShield className="home-icon" /> */}
+                {/* <p className="home-icon-text">Admin Dashboard</p> */}
+              </Link>
+            </div>
           )}
         </div>
       </header>

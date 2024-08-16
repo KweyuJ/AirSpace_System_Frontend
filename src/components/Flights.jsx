@@ -19,7 +19,7 @@ const Flights = () => {
         e.preventDefault();
 
         try {
-            const response = await axios.get('http://127.0.0.1:5000/flights', {
+            const response = await axios.get('https://airspace-system-backend-4.onrender.com/flights', {
                 params: {
                     from: fromCity,
                     to: toCity,

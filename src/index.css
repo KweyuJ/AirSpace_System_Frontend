@@ -70,13 +70,7 @@ body {
   margin-bottom: 20px;
 } */
 
-/* .home {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f5f5f5;
-} */
+
 /* HOme styling */
 .home-page {
   width: 100%;
@@ -115,52 +109,17 @@ body {
   width: 100%; /* Ensures the container spans the width of the header */
 }
 
-.home-icon-box {
-  background-color: rgb(199, 217, 230); /* Set the background color to white */
-  padding: 20px;
-  border-radius: 10px;
-  text-align: center;
-  height: 50px;
-  width: fit-content;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  border: 2px solid #f8f7f780; /* Add a red border to create the outer margin effect */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow for depth */
-  
+.home-welcome-text {
+  position: absolute;
+  top: 20%; /* Adjust this value to fine-tune vertical positioning */
+  right: 200px; /* Adjust this value to fine-tune horizontal positioning */
+  color: white;
+  font-style: italic;
+  font-size: 2.5rem; /* Adjust the size as needed */
+  z-index: 3; /* Ensure it appears above the image */
 }
 
-.home-icon-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px; /* Add space between the icon boxes */
-}
-.home-icon-link {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-decoration: none; /* Remove underline from links */
-}
 
-.home-icon {
-  color: #b71c1c; /* Change icon color to match the red theme */
-  font-size: 2em;
-  transition: transform 0.3s ease;
-}
-
-.home-icon-text {
-  color: #b71c1c; /* Change text color to match the red theme */
-  font-size: 1.2em;
-  margin-top: 10px;
-}
-
-.home-icon-box:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); /* Increase shadow on hover for emphasis */
-}
-
-.home-icon-link:hover .home-icon {
-  transform: scale(1.1);
-}
 
 /* Middle Section */
 .home-middle-section {
@@ -207,22 +166,22 @@ body {
 
 .home-bottom-section h3 {
   margin-bottom: 20px;
-  color: black;
+  color: #b71c1c;
 }
 
 /* Destination Cards */
 .home-destination-images {
   display: grid;
   grid-template-columns: repeat(3, 1fr); /* Creates 3 equal columns */
-  gap: 20px; /* Adjust the space between the cards */
+  gap: 15px; /* Adjusted the space between the cards for a tighter layout */
 }
 
 /* Card Styling */
 .destination-card {
   background-color: white;
-  border-radius: 10px;
+  border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease;
   display: flex;
   flex-direction: column;
@@ -231,28 +190,27 @@ body {
 /* Image Styling */
 .destination-card img {
   width: 100%;
-  height: 500px; /* Increased height for taller images */
+  height: 300px; /* Reduced height for more compact images */
   object-fit: cover; /* Ensure image covers the card */
   transition: transform 0.3s ease; /* Smooth scale transition */
 }
 
 /* Card Content Styling */
 .destination-card-content {
-  padding: 5px;
+  padding: 10px;
   text-align: center;
   flex: 1; /* Allows content to grow if needed */
-  
 }
 
 .destination-card-content h4 {
-  margin: 10px 0;
-  color: black;
-  font-size: 1.2em;
+  margin: 8px 0;
+  color: #b71c1c;
+  font-size: 1.1em;
 }
 
 .destination-card-content p {
   color: #555;
-  font-size: 0.9em;
+  font-size: 0.85em; /* Slightly reduced font size for more compact look */
 }
 
 .destination-card:hover {
@@ -267,162 +225,9 @@ body {
 
 
 
-/* .full-screen-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: cover;
-} */
-
-.contact-container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-}
-
-h1 {
-  color: #e63946; 
-  margin-bottom: 20px;
-  text-align: center;
-}
-
-p {
-  color: #333;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-
-.contact-info {
-  margin-bottom: 30px;
-  padding: 10px;
-  border: 1px solid #e63946;
-  border-radius: 8px;
-}
-
-.contact-info h3 {
-  color: #e63946;
-  margin-bottom: 10px;
-}
-
-.contact-info p {
-  margin: 5px 0;
-  font-size: 16px;
-}
-
-.success-message {
-  color: #28a745;
-  font-size: 16px;
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.contact-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-.form-group label {
-  margin-bottom: 5px;
-  font-weight: bold;
-  color: #555;
-}
-
-.form-group input,
-.form-group textarea {
-  width: 100%;
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-textarea {
-  min-height: 120px;
-}
-
-.submit-button {
-  background-color: #e63946; /* Coral Red */
-  color: #fff;
-  border: none;
-  padding: 10px 15px;
-  font-size: 16px;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.submit-button:hover {
-  background-color: #d32f2f; /* Darker Coral Red */
-}
-
-/* .about-container {
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 20px;
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  font-family: Arial, sans-serif;
-}
-
-h1, h2 {
-  color: #e63946; 
-
-.intro-section p {
-  font-size: 18px;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-.highlight {
-  color: #e63946; 
-  font-weight: bold;
-}
-
-.mission-section,
-.vision-section,
-.story-section,
-.offer-section,
-.why-section,
-.join-section {
-  margin-bottom: 30px;
-}
-
-ul {
-  list-style-type: disc;
-  margin-left: 20px;
-  color: #333;
-}
-
-li {
-  margin-bottom: 10px;
-}
-
-p {
-  line-height: 1.6;
-  color: #333;
-}
-
-h1 {
-  font-size: 36px;
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 28px;
-  margin-bottom: 15px;
-} */
 
 
-
-/* passenger details */
+/* Passenger details */
 .container {
   width: 100%;
   max-width: 1200px;
@@ -430,22 +235,23 @@ h2 {
   padding: 50px;
 }
 
-/* header {
+/* Header styling */
+header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-image: url('../../Images/stock-photo-sky 1.jpg');
+  background-image: url('../src/assets/stock-photo-sky 1.jpeg');
   padding: 20px 0;
-} */
-
-
-
-
-.route-info {
-  margin-left: auto;
-  margin-right: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
+/* Route info styling */
+.route-info {
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Steps styling */
 .steps {
   display: flex;
   justify-content: space-around;
@@ -458,7 +264,12 @@ h2 {
 }
 
 .steps .current-step {
-  border-bottom: 2px solid red;
+  border-bottom: 2px solid #b71c1c; /* Highlight color for the current step */
+}
+
+/* Main content styling */
+main {
+  padding: 20px;
 }
 
 main h1 {
@@ -470,57 +281,31 @@ main p {
   margin-bottom: 20px;
 }
 
-/* Passenger details Form */
-/* Header */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-image: url('../src/assets/stock-photo-sky 1.jpeg');
-  padding: 20px 0;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-}
-
-.top-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  display: flex;
-  gap: 50px;
-  padding-left: 20px; /* Add padding to move the words to the right */
-}
-
-.centered {
-  text-align: center;
-}
-
-.top-nav ul li a {
-  text-decoration: none;
-  color: #333;
-  justify-content: space-between;
-}
-
-.route-info {
-  margin: 0 auto;
-  text-align: center;
-}
-
+/* Form styling */
 form {
-  /*background-color: #f9f9f9; */ /* Removed background color for a cleaner look */
+  background-color: #fff; /* White background for the form */
   padding: 20px;
   border: 1px solid #ddd;
   border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for form */
 }
 
+/* Section header styling */
 .section-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background-color: #f1c1c1;
   padding: 10px;
   margin-bottom: 20px;
   border-radius: 8px 8px 0 0; /* Rounded top corners */
 }
 
+.section-header .icon {
+  font-size: 24px; /* Larger icon for better visibility */
+}
+
+/* Form group styling */
 .form-group {
   margin-bottom: 20px;
 }
@@ -532,16 +317,19 @@ form {
   color: #333;
 }
 
-.Passenger-Details.form-group input,
-.Passenger-Details.form-group select {
+/* Input and select styling */
+.form-group input,
+.form-group select {
   width: 100%;
-  padding: 10px;
+  padding: 12px;
   border: 1px solid #ddd;
   border-radius: 4px;
   font-size: 16px;
   color: #333;
+  box-sizing: border-box; /* Ensure padding and border are included in the width */
 }
 
+/* Phone input styling */
 .phone-input {
   display: flex;
   align-items: center;
@@ -549,33 +337,44 @@ form {
 }
 
 .phone-input img {
-  height: 20px;
+  height: 24px; /* Slightly larger flag icon */
 }
 
-/* Buttons */
-form button {
-  padding: 10px 20px;
-  background-color: #eb0b0b; 
+/* Checkbox group styling */
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkbox-group input[type="checkbox"] {
+  margin-right: 8px;
+}
+
+/* Button styling */
+.submit-btn {
+  padding: 12px 20px;
+  background-color: #b71c1c; /* Red background */
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 16px;
-  transition: background-color 0.3s ease; /* Smooth transition for hover effect */
+  transition: background-color 0.3s ease;
 }
 
-form button:hover {
-  background-color: #ca2929;
+.submit-btn:hover {
+  background-color: #a31717; /* Darker red on hover */
 }
 
-/* Error Message */
+/* Error message styling */
 .error {
   color: red;
   font-size: 12px;
-  margin-bottom: 10px;
+  margin-top: 5px;
 }
 
-/* Responsive Styling (For smaller screens) */
+/* Responsive styling */
 @media (max-width: 768px) {
   .steps {
     flex-direction: column;
@@ -586,6 +385,7 @@ form button:hover {
     margin-bottom: 15px;
   }
 }
+
 
 
 /* Updated styles for Flights component */
@@ -748,14 +548,19 @@ form button:hover {
 }
 
 .arrow {
-  font-size: 40px; /* Adjusted for better visual balance */
-  margin: 0 15px;
-  color: whitesmoke; /* Ensure color contrasts with the background */
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-top: 10px solid transparent;
+  border-bottom: 10px solid transparent;
+  border-left: 20px solid rgb(250, 248, 248); /* Adjust color and size as needed */
+  margin: 0 10px; /* Adjust spacing as needed */
 }
 
+
 .flight-number {
-  font-size: 18px;
-  font-weight: 500;
+  font-size: 30px;
+  font-weight: bold;
   color: #fff; /* Ensure readability on the dark background */
   margin-left: 20px;
 }
@@ -811,7 +616,8 @@ form button:hover {
 .confirmation-container {
   font-family: Arial, sans-serif;
   padding: 20px;
-  max-width: 800px;
+  max-width: 80%;
+  height: 100vh;
   margin: 0 auto;
   background-color: #f2f2f2; /* Light background for better contrast */
   border-radius: 10px; /* Smooth corners for the entire container */
@@ -831,8 +637,9 @@ h2 {
 }
 
 .flight-box {
-  background-color: #FF5C57;
+  background-color: #da4843;
   padding: 15px;
+  margin-right: 100px;
   border-radius: 10px;
   color: white;
   margin-bottom: 10px;
@@ -879,11 +686,11 @@ h2 {
 }
 
 .traveler-box {
-  background-color: #FF5C57;
+  background-color: #da4843;
   padding: 15px;
   border-radius: 10px;
   color: white;
-  margin-top: 20px;
+  margin-top: 30px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
@@ -912,12 +719,12 @@ h2 {
 }
 
 .mpesa-button {
-  background-color: #006633;
+  background-color: #68756f;
   color: #fbfdfc;
   font-weight: bold;
   padding: 12px 25px;
   border: none;
-  border-radius: 5px;
+  border-radius: 8px;
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -927,9 +734,11 @@ h2 {
 }
 
 .mpesa-button:hover {
-  background-color: #004d26; /* Darker green on hover */
+  background-color: #58615d; /* Darker green on hover */
 }
 
 .mpesa-button img {
   margin-right: 10px;
+  width: 150px;
+  border-radius: 5px;
 }

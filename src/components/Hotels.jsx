@@ -120,7 +120,7 @@ const App = () => {
   useEffect(() => {
     const fetchHotels = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/hotels");
+        const response = await fetch("https://airspace-system-backend-4.onrender.com/hotels");
 
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

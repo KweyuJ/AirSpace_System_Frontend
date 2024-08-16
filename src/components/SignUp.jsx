@@ -92,7 +92,7 @@ const SignUp = () => {
 
     if (Object.keys(newErrors).length) return;
 
-    const endpoint = "http://127.0.0.1:5000/users";
+    const endpoint = "https://airspace-system-backend-4.onrender.com/users";
     const body = JSON.stringify({
       title: formData.title,
       first_name: formData.first_name,

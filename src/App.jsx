@@ -1,3 +1,5 @@
+// src/App.jsx
+
 import React from "react";
 import { Routes, Route, Link, useNavigate } from "react-router-dom";
 import {
@@ -8,6 +10,7 @@ import {
   FaSignInAlt,
   FaUserPlus,
   FaInfoCircle,
+  FaUser,
 } from "react-icons/fa";
 import Home from "./components/Home";
 import Flights from "./components/Flights";
@@ -32,7 +35,7 @@ import AdminRoute from "./components/AdminRoute";
 import UserSection from "./components/UserSection";
 import Generateformpdf from "./components/Generateformpdf";
 import useAuth from "./hooks/useAuth";
-import UserProfile from "./components/UserProfile";
+
 import Footer from "./components/Footer"; // Import the Footer component
 
 function App() {
@@ -70,6 +73,26 @@ function App() {
                 <FaPhone /> Contact Us
               </Link>
             </li>
+            {isLoggedIn && (
+              <>
+                <li>
+                  <Link to="/flights">
+                    <FaPlane /> AirEscape Flights
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/hotels">
+                    <FaHotel /> AirEscape Hotels
+                  </Link>
+                </li>
+                
+                <li>
+                  <a href="#sign-out" onClick={handleSignOut}>
+                    <FaSignInAlt /> Sign Out
+                  </a>
+                </li>
+              </>
+            )}
             {!isLoggedIn && (
               <>
                 <li>
@@ -83,13 +106,6 @@ function App() {
                   </Link>
                 </li>
               </>
-            )}
-            {isLoggedIn && (
-              <li>
-                <a href="#sign-out" onClick={handleSignOut}>
-                  <FaSignInAlt /> Sign Out
-                </a>
-              </li>
             )}
           </ul>
         </nav>
@@ -111,6 +127,7 @@ function App() {
             <Route element={<ProtectedRoute />}>
               <Route path="/flights" element={<Flights />} />
               <Route path="/hotels" element={<Hotels />} />
+              
             </Route>
             <Route path="/contactus" element={<ContactUs />} />
             <Route path="/hotels/:id" element={<SingleHotelPage />} />
@@ -118,7 +135,7 @@ function App() {
             <Route path="/pdf-view" element={<Generateformpdf />} />
           </Routes>
         </main>
-        <Footer /> 
+        <Footer />
       </div>
     </FlightProvider>
   );
